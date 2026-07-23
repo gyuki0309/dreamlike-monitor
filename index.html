@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>超自然行动组 热度监测周报 | 2026.07.18-07.24</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --primary: #1a1a2e;
+  --accent: #e94560;
+  --accent2: #0f3460;
+  --bg: #f8f9fa;
+  --card: #ffffff;
+  --text: #2d3436;
+  --text-light: #636e72;
+  --border: #e9ecef;
+  --green: #00b894;
+  --red: #e94560;
+  --orange: #fdcb6e;
+  --blue: #0984e3;
+  --purple: #6c5ce7;
+  --xhs: #ff2442;
+  --dy: #000000;
+  --bili: #fb7299;
+  --wb: #e6162d;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  border-radius: 16px;
+  padding: 48px 40px;
+  color: white;
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -20%;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(233,69,96,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.header h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; position: relative; }
+.header .subtitle { font-size: 16px; opacity: 0.8; position: relative; }
+.header .period {
+  display: inline-block;
+  background: rgba(233,69,96,0.2);
+  border: 1px solid rgba(233,69,96,0.4);
+  padding: 4px 12px; border-radius: 20px;
+  font-size: 14px; margin-top: 12px; position: relative;
+}
+
+/* Stats Overview */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px; margin-bottom: 24px;
+}
+.stat-card {
+  background: var(--card);
+  border-radius: 12px; padding: 22px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border: 1px solid var(--border);
+  transition: transform 0.2s;
+}
+.stat-card:hover { transform: translateY(-2px); }
+.stat-card .label {
+  font-size: 12px; color: var(--text-light);
+  letter-spacing: 0.5px; margin-bottom: 8px;
+}
+.stat-card .value { font-size: 26px; font-weight: 700; color: var(--primary); }
+.stat-card .value small { font-size: 14px; font-weight: 600; }
+.stat-card .trend { font-size: 12px; margin-top: 6px; }
+.trend-up { color: var(--red); }
+.trend-down { color: var(--green); }
+.trend-stable { color: var(--text-light); }
+.stat-card .subvalue { font-size: 12px; color: var(--text-light); margin-top:2px; }
+
+/* 多维度榜单/规模指标面板 */
+.metrics-panel {
+  background: var(--card); border:1px solid var(--border); border-radius:12px;
+  padding:22px 24px; margin-bottom:24px; box-shadow:0 2px 8px rgba(0,0,0,0.04);
+}
+.metrics-panel .mp-head { display:flex; align-items:center; gap:10px; font-size:15px; font-weight:700; color:var(--primary); cursor:pointer; user-select:none; }
+.metrics-panel .mp-head .icon { width:28px; height:28px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:14px; }
+.metrics-panel .mp-toggle { margin-left:auto; font-size:13px; color:var(--text-light); transition:transform .25s; }
+.metrics-panel.open .mp-toggle { transform:rotate(180deg); }
+.metrics-panel .mp-hint { font-size:11px; font-weight:400; color:var(--text-light); margin-left:4px; }
+.metrics-panel .mp-body { max-height:0; overflow:hidden; transition:max-height .35s ease, margin-top .35s ease; }
+.metrics-panel.open .mp-body { max-height:600px; margin-top:16px; }
+.mp-subtitle { font-size:12px; font-weight:700; color:var(--text-light); margin:2px 0 8px; display:flex; align-items:center; gap:6px; }
+.mp-subtitle::before { content:""; width:3px; height:12px; background:var(--accent); border-radius:2px; }
+.mp-subtitle.wk::before { background:#e94560; }
+.metrics-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(96px,1fr)); gap:8px; margin-bottom:6px; }
+.metric-item { background:#fbfcfd; border:1px solid var(--border); border-radius:8px; padding:9px 8px; text-align:center; transition:transform .2s; }
+.metric-item:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,.05); }
+.metric-item.hot { background:linear-gradient(135deg,#fff0f2,#fff8f9); border-color:#ffd4dc; }
+.metric-item .m-num { font-size:18px; font-weight:800; color:var(--accent); line-height:1.1; }
+.metric-item.hot .m-num { color:#e94560; }
+.metric-item .m-cap { font-size:11px; font-weight:600; color:var(--text); margin-top:4px; }
+.metric-item .m-sub { font-size:9px; color:var(--text-light); margin-top:2px; }
+
+/* Trend section */
+.trend-note {
+  background:#fff8e6; border:1px dashed #f0c040; color:#8a6d0b;
+  padding:10px 14px; border-radius:8px; font-size:12px; margin-top:8px;
+}
+.chart-box { position: relative; height: 300px; margin-top: 12px; }
+
+/* Section */
+.section {
+  background: var(--card);
+  border-radius: 12px; padding: 32px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border: 1px solid var(--border);
+}
+.section-title {
+  font-size: 20px; font-weight: 700; margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-title .icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center; font-size: 16px;
+}
+.icon-blue { background: #dfe6e9; }
+.icon-red { background: #ffeef0; }
+.icon-green { background: #e8f8f5; }
+.icon-purple { background: #f0e6ff; }
+.icon-orange { background: #fff3e0; }
+
+.summary-box {
+  background: #f8f9fa;
+  border-left: 4px solid var(--accent);
+  padding: 16px 20px; border-radius: 0 8px 8px 0;
+  margin-bottom: 20px; font-size: 14px; line-height: 1.8;
+}
+
+/* Platform fans */
+.fans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px; margin-bottom: 16px;
+}
+.fan-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px; background: #f8f9fa; border-radius: 8px;
+}
+.fan-item .platform-icon {
+  width: 40px; height: 40px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 12px; color: white; flex-shrink:0;
+}
+.fan-item .fan-data .fan-count { font-weight: 700; font-size: 16px; }
+.fan-item .fan-data .fan-label { font-size: 12px; color: var(--text-light); }
+
+/* Content table */
+.content-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.content-table th {
+  background: #f1f3f5; padding: 10px 10px; text-align: center;
+  font-weight: 600; font-size: 12px; color: var(--text-light);
+  border-bottom: 2px solid var(--border); white-space: nowrap;
+}
+.content-table td {
+  padding: 10px 10px; border-bottom: 1px solid var(--border);
+  vertical-align: middle; text-align: center;
+}
+.content-table td.title-cell { text-align: left; min-width: 180px; }
+.content-table tr:hover { background: #f8f9fa; }
+.content-table .highlight { background: #fff3e0; }
+.num { font-variant-numeric: tabular-nums; }
+.num-strong { font-weight: 700; color: var(--accent); }
+.dash { color: #ccc; }
+.plat-head-xhs { color: var(--xhs); }
+.plat-head-dy { color: #333; }
+.plat-head-bili { color: var(--bili); }
+
+/* Tags */
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+.tag-hot { background: #ffe0e6; color: #c0392b; }
+.tag-new { background: #d4efdf; color: #27ae60; }
+.tag-collab { background: #d6eaf8; color: #2980b9; }
+.tag-content { background: #f4ecf7; color: #8e44ad; }
+
+/* TOP3 cards */
+.top3-title { font-size: 15px; font-weight:700; margin: 24px 0 12px; display:flex; align-items:center; gap:8px; }
+.top3-title .badge { color:white; padding:2px 10px; border-radius:6px; font-size:12px; }
+.top3-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.top3-card {
+  border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+  background:#fff; transition: transform .2s, box-shadow .2s;
+}
+.top3-card:hover { transform: translateY(-3px); box-shadow:0 6px 18px rgba(0,0,0,0.08); }
+.top3-card .thumb { position: relative; width:100%; aspect-ratio: 16/9; overflow:hidden; background:#000; }
+.top3-card .thumb img { width:100%; height:100%; object-fit: cover; object-position: center; }
+.top3-card .rank {
+  position:absolute; top:8px; left:8px; width:28px; height:28px; border-radius:50%;
+  color:white; font-weight:700; display:flex; align-items:center; justify-content:center; font-size:14px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.3);
+}
+.rank-1 { background: linear-gradient(135deg,#f5b301,#ff8c00); }
+.rank-2 { background: linear-gradient(135deg,#b0bec5,#78909c); }
+.rank-3 { background: linear-gradient(135deg,#cd7f32,#a05a2c); }
+.top3-card .body { padding: 14px 16px; }
+.top3-card .author { font-size:13px; color:var(--text-light); margin-bottom:4px; display:flex; align-items:center; gap:6px; }
+.top3-card .caption { font-size:13px; font-weight:600; line-height:1.5; margin-bottom:10px; min-height:38px; }
+.top3-card .metrics { display:flex; flex-wrap:wrap; gap:10px; font-size:12px; }
+.top3-card .metrics span { color:var(--text-light); }
+.top3-card .metrics b { color:var(--text); }
+
+/* Sentiment overview cards (Part4) */
+.senti-cards { display:grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap:14px; margin-bottom:24px; }
+.senti-card {
+  background:#fbfcfd; border:1px solid var(--border);
+  border-radius:14px; padding:22px 16px; text-align:center; position:relative; overflow:hidden;
+  transition:transform .2s, box-shadow .2s;
+}
+.senti-card:hover { transform:translateY(-3px); box-shadow:0 6px 18px rgba(0,0,0,.06); }
+.senti-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; }
+.senti-card .big { font-size:30px; font-weight:800; margin-bottom:4px; color:var(--primary); }
+.senti-card .cap { font-size:13px; font-weight:600; color:var(--text); }
+.senti-card .sub { font-size:11px; color:var(--text-light); margin-top:4px; }
+.senti-card.good  { background:linear-gradient(135deg,#eafaf1,#f4fdf8); border-color:#c8f0da; }
+.senti-card.good::before  { background:#2ecc71; }
+.senti-card.good .big  { color:#1e8449; }
+.senti-card.warn  { background:linear-gradient(135deg,#fff9e6,#fffdf5); border-color:#ffe8a3; }
+.senti-card.warn::before  { background:#f1c40f; }
+.senti-card.warn .big  { color:#c99700; }
+.senti-card.split { background:linear-gradient(135deg,#fff0f2,#fff8f9); border-color:#ffd4dc; }
+.senti-card.split::before { background:#ff6b6b; }
+.senti-card.split .big { color:#e74c3c; }
+.senti-card.heart { background:linear-gradient(135deg,#eef3ff,#f6f9ff); border-color:#cfe0fb; }
+.senti-card.heart::before { background:#4a7bf7; }
+.senti-card.heart .big { color:#2e5cd6; }
+
+.senti-flex { display:grid; grid-template-columns: 1fr 1fr; gap:24px; }
+@media(max-width:760px){ .senti-flex{ grid-template-columns:1fr; } }
+.senti-panel h3 { font-size:15px; margin-bottom:14px; }
+
+/* keyword cloud */
+.kw-cloud { display:flex; flex-wrap:wrap; gap:10px; }
+.kw {
+  padding:8px 14px; border-radius:8px; font-weight:700; line-height:1;
+  border:1px solid transparent;
+}
+.kw.neg { background:#fdecec; color:#e74c3c; border-color:#f5c6c6; }
+.kw.pos { background:#eafaf1; color:#27ae60; border-color:#c8ecd6; }
+.kw.neu { background:#eef1f5; color:#5d6d7e; border-color:#d5dbe1; }
+.kw.s { font-size:12px; }
+.kw.m { font-size:14px; }
+.kw.l { font-size:17px; }
+.kw.xl { font-size:20px; }
+
+/* Feedback list (legacy) */
+.feedback-list { list-style: none; margin-top: 12px; }
+.feedback-list li {
+  padding: 10px 16px; border-left: 3px solid; margin-bottom: 8px;
+  border-radius: 0 6px 6px 0; font-size: 13px; background: #f8f9fa;
+}
+.feedback-positive { border-color: var(--green); }
+.feedback-negative { border-color: var(--red); }
+
+/* Feedback compare (Part4 正/负面 TOP5 对比布局) */
+.fb-compare { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:14px; }
+.fb-col { border-radius:14px; padding:16px 16px 18px; }
+.fb-col.pos { background:linear-gradient(135deg,#f1fbf4,#f8fefb); border:1px solid #cdeed7; }
+.fb-col.neg { background:linear-gradient(135deg,#fef2f2,#fff8f8); border:1px solid #f5d1d1; }
+.fb-col .fb-hd { display:flex; align-items:center; gap:8px; font-size:15px; font-weight:800; margin-bottom:14px; padding-bottom:10px; border-bottom:1px dashed rgba(0,0,0,.08); }
+.fb-col.pos .fb-hd { color:#1e874b; }
+.fb-col.neg .fb-hd { color:#c0392b; }
+.fb-col .fb-hd .fb-emoji { font-size:18px; }
+.fb-col .fb-hd .fb-count { margin-left:auto; font-size:11px; font-weight:600; color:var(--text-light); background:rgba(255,255,255,.7); padding:2px 9px; border-radius:10px; }
+.fb-item { display:flex; gap:10px; padding:9px 0; border-bottom:1px solid rgba(0,0,0,.05); }
+.fb-item:last-child { border-bottom:none; }
+.fb-rank { flex:none; width:20px; height:20px; border-radius:6px; color:#fff; font-size:12px; font-weight:800; display:flex; align-items:center; justify-content:center; margin-top:1px; }
+.fb-col.pos .fb-rank { background:#27ae60; }
+.fb-col.neg .fb-rank { background:#e74c3c; }
+.fb-col.pos .fb-rank.r1 { background:#1e874b; }
+.fb-col.neg .fb-rank.r1 { background:#c0392b; }
+.fb-body { flex:1; }
+.fb-t { font-size:13px; font-weight:700; color:var(--text); line-height:1.4; }
+.fb-t .fb-tag { display:inline-block; font-size:10px; font-weight:600; padding:1px 6px; border-radius:8px; margin-left:6px; vertical-align:middle; }
+.fb-col.pos .fb-tag { background:#e3f6ea; color:#1e874b; }
+.fb-col.neg .fb-tag { background:#fbe1e1; color:#c0392b; }
+.fb-d { font-size:12px; color:var(--text-light); line-height:1.6; margin-top:3px; }
+@media(max-width:760px){ .fb-compare { grid-template-columns:1fr; } }
+
+/* Competitor */
+.competitor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.competitor-card { border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+.competitor-card h4 { font-size: 16px; margin-bottom: 8px; }
+.competitor-card .desc { font-size: 13px; color: var(--text-light); line-height: 1.7; }
+
+.footer { text-align: center; padding: 24px; font-size: 12px; color: var(--text-light); }
+.source-note { font-size: 11px; color: #999; font-style: italic; margin-top: 8px; }
+.need-data {
+  background: #fff3cd; border: 1px dashed #ffc107; padding: 8px 12px;
+  border-radius: 6px; font-size: 12px; color: #856404; margin-top: 8px;
+}
+
+/* ===== 平台曝光趋势卡片（参考图样式） ===== */
+.expo-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:16px; margin-bottom:20px; }
+.expo-card { border-radius:14px; padding:20px; position:relative; overflow:hidden; border:1px solid var(--border); }
+.expo-card.dy   { background:linear-gradient(135deg,#f3f0ff,#faf9ff); }
+.expo-card.ks   { background:linear-gradient(135deg,#fff3e8,#fffaf5); }
+.expo-card.xhs  { background:linear-gradient(135deg,#fff0f2,#fff8f9); }
+.expo-card .plat-row { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+.expo-card .plat-badge { width:24px; height:24px; border-radius:6px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:11px; font-weight:700; }
+.expo-card .plat-name { font-size:13px; color:var(--text-light); font-weight:600; }
+.expo-card .expo-val { font-size:30px; font-weight:800; color:var(--primary); line-height:1.1; }
+.expo-card .expo-val small { font-size:15px; font-weight:700; }
+.expo-card .expo-tag { display:inline-block; margin-left:8px; font-size:13px; font-weight:700; vertical-align:middle; }
+.expo-tag.up   { color:var(--red); }
+.expo-tag.flat { color:var(--text-light); }
+.expo-card .expo-sub { font-size:11px; color:var(--text-light); margin-top:6px; }
+.expo-card .expo-bar { height:8px; background:#eef1f5; border-radius:6px; overflow:hidden; margin-top:12px; }
+.expo-card .expo-bar span { display:block; height:100%; border-radius:6px; }
+/* 一行紧凑版曝光卡 */
+.expo-row { grid-template-columns: repeat(4,1fr); gap:12px; }
+.expo-row .expo-card { padding:14px 16px; }
+.expo-row .expo-card .plat-row { margin-bottom:6px; }
+.expo-row .expo-card .plat-name { font-size:12px; }
+.expo-row .expo-card .expo-val { font-size:24px; }
+.expo-row .expo-card .expo-val small { font-size:13px; margin-left:2px; }
+.expo-row .expo-card .expo-sub { font-size:11px; margin-top:5px; }
+@media (max-width:720px){ .expo-row { grid-template-columns: repeat(2,1fr); } }
+
+/* ===== 官方动作时间线（可折叠） ===== */
+.timeline { position:relative; margin:8px 0 0 8px; padding-left:26px; border-left:2px solid #e3e6ea; }
+.tl-item { position:relative; padding:0 0 4px 0; margin-bottom:14px; }
+.tl-item:last-child { margin-bottom:0; }
+.tl-dot { position:absolute; left:-34px; top:2px; width:14px; height:14px; border-radius:50%; border:3px solid #fff; box-shadow:0 0 0 2px currentColor; }
+.tl-dot.c-new { color:#27ae60; background:#27ae60; }
+.tl-dot.c-collab { color:#2980b9; background:#2980b9; }
+.tl-dot.c-opt { color:#8e44ad; background:#8e44ad; }
+.tl-dot.c-daily { color:#e67e22; background:#e67e22; }
+.tl-head { display:flex; align-items:center; gap:10px; cursor:pointer; user-select:none; }
+.tl-date { font-size:12px; font-weight:700; color:#fff; background:var(--accent2); padding:2px 9px; border-radius:20px; flex-shrink:0; }
+.tl-title { font-size:14px; font-weight:700; flex:1; }
+.tl-toggle { font-size:12px; color:var(--text-light); transition:transform .2s; }
+.tl-item.open .tl-toggle { transform:rotate(180deg); }
+.tl-body { max-height:0; overflow:hidden; transition:max-height .3s ease; font-size:13px; color:var(--text-light); line-height:1.7; }
+.tl-item.open .tl-body { max-height:400px; margin-top:6px; }
+.tl-body .kw-hl { color:var(--accent); font-weight:600; }
+
+/* ===== 媒体报道卡片 ===== */
+.media-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:14px; }
+.media-card { border:1px solid var(--border); border-left:4px solid var(--blue); border-radius:8px; padding:16px 18px; background:#fbfcfd; transition:transform .2s; }
+.media-card:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,.06); }
+.media-card .m-src { font-size:12px; color:var(--blue); font-weight:700; margin-bottom:6px; }
+.media-card .m-src .m-date { color:var(--text-light); font-weight:400; margin-left:6px; }
+.media-card .m-title { font-size:14px; font-weight:700; line-height:1.5; margin-bottom:8px; }
+.media-card .m-desc { font-size:12px; color:var(--text-light); line-height:1.6; }
+.media-card.tone-pos { border-left-color:var(--green); }
+.media-card.tone-pos .m-src { color:var(--green); }
+.media-card.tone-neg { border-left-color:var(--red); }
+.media-card.tone-neg .m-src { color:var(--red); }
+
+/* 评论情感标注 */
+.senti-tag { display:inline-block; font-size:11px; font-weight:700; padding:1px 7px; border-radius:10px; margin-right:6px; }
+.senti-tag.pos { background:#eafaf1; color:#1e8449; }
+.senti-tag.neg { background:#fdecec; color:#c0392b; }
+.senti-tag.neu { background:#eef1f5; color:#5d6d7e; }
+.cmt-list { list-style:none; margin-top:6px; }
+.cmt-list li { padding:8px 0; border-bottom:1px dashed var(--border); font-size:13px; line-height:1.6; }
+.cmt-list li:last-child { border-bottom:none; }
+
+/* 链接徽标 */
+a.linkchip { display:inline-block; font-size:11px; color:var(--blue); text-decoration:none; border:1px solid #cfe6fb; background:#f0f8ff; padding:1px 8px; border-radius:10px; margin-top:6px; }
+a.linkchip:hover { background:#e0f0ff; }
+
+/* TapTap 真实长评摘录 */
+.review-quotes { display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap:14px; margin-top:12px; }
+.review-quote { border:1px solid var(--border); border-left:4px solid #1e88e5; border-radius:8px; padding:14px 16px; background:#fbfcfd; }
+.review-quote .rq-head { display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text-light); margin-bottom:8px; flex-wrap:wrap; }
+.review-quote .rq-user { font-weight:700; color:var(--text); }
+.review-quote .rq-badge { font-size:10px; font-weight:700; padding:1px 7px; border-radius:10px; background:#eef1f5; color:#5d6d7e; }
+.review-quote .rq-badge.neg { background:#fdecec; color:#c0392b; }
+.review-quote .rq-badge.mix { background:#fff3d6; color:#c8860a; }
+.review-quote .rq-text { font-size:13px; line-height:1.7; color:var(--text); }
+.review-quote .rq-text .hl { color:#c0392b; font-weight:600; }
+
+/* Foldbox — 通用「小结前置 + 下拉展开」折叠组件 */
+.foldbox { border:1px solid var(--border); border-radius:12px; background:#fbfcfd; margin-top:14px; overflow:hidden; }
+.foldbox .fb-summary { padding:16px 18px; }
+.foldbox .fb-summary .fb-lead { font-size:13.5px; line-height:1.75; color:var(--text); }
+.foldbox .fb-summary .fb-lead strong { color:var(--primary); }
+.foldbox .fb-toggle {
+  display:inline-flex; align-items:center; gap:6px; cursor:pointer; user-select:none;
+  margin-top:12px; font-size:12.5px; font-weight:700; color:var(--blue);
+  background:#eef6ff; border:1px solid #cfe6fb; padding:6px 14px; border-radius:20px; transition:background .2s;
+}
+.foldbox .fb-toggle:hover { background:#e0f0ff; }
+.foldbox .fb-toggle .fb-arrow { transition:transform .3s; font-size:11px; }
+.foldbox.open .fb-toggle .fb-arrow { transform:rotate(180deg); }
+.foldbox .fb-detail { max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .3s ease, padding .3s; padding:0 18px; }
+.foldbox.open .fb-detail { max-height:4000px; opacity:1; padding:0 18px 18px; }
+.foldbox .fb-detail .fb-inner-title { font-size:14px; font-weight:700; color:var(--text); margin:4px 0 12px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>超自然行动组 热度监测周报</h1>
+  <p class="subtitle">巨人网络 | 多人组队欢乐恐怖手游</p>
+  <span class="period">📅 监测周期：2026.07.18(周五) - 07.24(周四)</span>
+</div>
+
+<!-- 核心平台曝光卡（置顶，无标题） -->
+<div class="section" style="border:none;box-shadow:none;padding-top:4px;background:transparent;">
+  <div class="expo-grid expo-row">
+    <div class="expo-card ks">
+      <div class="plat-row"><span class="plat-badge" style="background:#ff7b00;">快</span><span class="plat-name">快手 · 话题播放</span></div>
+      <div class="expo-val">1132.9<small>亿</small></div>
+      <div class="expo-sub">短视频体量最大阵地</div>
+    </div>
+    <div class="expo-card dy">
+      <div class="plat-row"><span class="plat-badge" style="background:#111;">抖</span><span class="plat-name">抖音 · 话题播放</span></div>
+      <div class="expo-val">359.1<small>亿</small></div>
+      <div class="expo-sub">二创/名场面主阵地</div>
+    </div>
+    <div class="expo-card xhs">
+      <div class="plat-row"><span class="plat-badge" style="background:#ff2442;">红</span><span class="plat-name">小红书 · 话题浏览</span></div>
+      <div class="expo-val">93.9<small>亿</small></div>
+      <div class="expo-sub">讨论 7883.8万 · 攻略/形象</div>
+    </div>
+    <div class="expo-card" style="background:linear-gradient(135deg,#eef4ff,#f7faff);">
+      <div class="plat-row"><span class="plat-badge" style="background:#1e88e5;">Tap</span><span class="plat-name">TapTap · 口碑</span></div>
+      <div class="expo-val">6.7<small>/10</small></div>
+      <div class="expo-sub">2.8万+ 评价 · 见 Part 4</div>
+    </div>
+  </div>
+  <div class="trend-note">
+    📈 <strong>本周期为趋势监测首期，已建立各平台曝光基线</strong>。以上为各平台话题累计口径数据；从下期起将展示「较上期」的周环比增量与趋势箭头（参考日报动态样式）。进度条为量级相对可视化（快手为对数级领先）。
+  </div>
+  <p class="source-note">数据来源：抖音/快手/小红书站内话题页公开数据、TapTap 评分页（截至 2026.07.24）。单位：亿。</p>
+</div>
+
+<!-- 多维度榜单/规模指标 -->
+<div class="metrics-panel" id="asPanel">
+  <div class="mp-head" onclick="this.parentElement.classList.toggle('open')">
+    <span class="icon icon-red">📈</span>
+    <span>App Store 榜单 & 用户规模<span class="mp-hint">（鬼吹灯联动版本期 · 点击展开/收起）</span></span>
+    <span class="mp-toggle">▾</span>
+  </div>
+  <div class="mp-body">
+  <div class="mp-subtitle wk">本周维度（07.18-07.24 · 鬼吹灯联动版本期）</div>
+  <div class="metrics-grid">
+    <div class="metric-item hot">
+      <div class="m-num">#8</div>
+      <div class="m-cap">本周 iOS 游戏榜</div>
+      <div class="m-sub">单日 +28 位</div>
+    </div>
+    <div class="metric-item hot">
+      <div class="m-num">TOP 5</div>
+      <div class="m-cap">iOS 畅销榜（分类）</div>
+      <div class="m-sub">本周峰值排名</div>
+    </div>
+    <div class="metric-item hot">
+      <div class="m-num">#1</div>
+      <div class="m-cap">iOS 冒险榜</div>
+      <div class="m-sub">分类榜登顶</div>
+    </div>
+    <div class="metric-item">
+      <div class="m-num">TOP 10</div>
+      <div class="m-cap">iOS 畅销总榜</div>
+      <div class="m-sub">暑期档仍稳居</div>
+    </div>
+    <div class="metric-item">
+      <div class="m-num">3万+</div>
+      <div class="m-cap">单日下载（iOS）</div>
+      <div class="m-sub">高于日均 2.7万</div>
+    </div>
+    <div class="metric-item">
+      <div class="m-num">$13-18万</div>
+      <div class="m-cap">单日收入（iOS）</div>
+      <div class="m-sub">本周稳定区间</div>
+    </div>
+  </div>
+  <div class="mp-subtitle">累计规模（长线口径）</div>
+  <div class="metrics-grid">
+    <div class="metric-item">
+      <div class="m-num">2亿+</div>
+      <div class="m-cap">累计注册用户</div>
+      <div class="m-sub">截至 2026 Q1</div>
+    </div>
+    <div class="metric-item">
+      <div class="m-num">1000万</div>
+      <div class="m-cap">DAU 日活</div>
+      <div class="m-sub">02月官宣突破</div>
+    </div>
+    <div class="metric-item">
+      <div class="m-num">100万+</div>
+      <div class="m-cap">峰值同时在线</div>
+      <div class="m-sub">搜撤赛道全球第一</div>
+    </div>
+    <div class="metric-item">
+      <div class="m-num">50亿+</div>
+      <div class="m-cap">累计流水</div>
+      <div class="m-sub">营收核心支柱</div>
+    </div>
+  </div>
+  <p class="source-note">数据来源：<a href="https://www.qimai.cn/app/rank/appid/6444936298/country/cn" target="_blank" style="color:var(--blue);">七麦数据</a>（iOS 榜单/下载量实时监测，鬼吹灯联动版本期）、<a href="https://www.cnstock.com/commonDetail/739955" target="_blank" style="color:var(--blue);">上证报·巨人网络 H1 业绩预告</a>、<a href="https://new.qq.com/rain/a/20260714A04ZWU00" target="_blank" style="color:var(--blue);">腾讯新闻</a>、游民星空/竞核公开报道。本周排名为版本期峰值，非实时值；单日下载/收入为区间估算。</p>
+  </div>
+</div>
+
+<!-- Part 1 -->
+<div class="section">
+  <h2 class="section-title"><span class="icon icon-blue">📋</span> Part 1 官方动作时间线</h2>
+  <p style="font-size:12px;color:var(--text-light);margin:-10px 0 16px;">按时间倒序 · 点击任意条目展开/收起详情</p>
+  <div class="timeline">
+
+    <div class="tl-item open">
+      <span class="tl-dot c-new"></span>
+      <div class="tl-head"><span class="tl-date">07.23 晚</span><span class="tl-title">云南虫谷·多队对抗地图正式上线</span><span class="tl-toggle">▾</span></div>
+      <div class="tl-body">
+        多队对抗地图正式开放，新增 <span class="kw-hl">【极高危】BOSS「傩女异变」</span>、摸金模式新怪物 <span class="kw-hl">「巨型戏偶」</span>、龙珠房等新关卡内容。为本周版本更新核心，配套多条爆料内容（B站播放 5.0-8.1 万）。
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <span class="tl-dot c-collab"></span>
+      <div class="tl-head"><span class="tl-date">07.24 0点</span><span class="tl-title">果宝特攻联动第二弹上线绘梦厅</span><span class="tl-toggle">▾</span></div>
+      <div class="tl-body">
+        07.19 爆料 → 07.24 0点上线。新时装 <span class="kw-hl">【阿念-橙留香】+【巫铃儿-上官子怡】</span>，"果宝机甲归位"回忆杀引爆情怀，联动类内容抖音端普遍破 8 万赞。
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <span class="tl-dot c-opt"></span>
+      <div class="tl-head"><span class="tl-date">07.22</span><span class="tl-title">实时小地图优化（"阿念脖子拯救计划"）</span><span class="tl-toggle">▾</span></div>
+      <div class="tl-body">
+        小地图支持"边走边看"，被玩家称"阿念脖子拯救计划"。<span class="kw-hl">抖音端点赞 8.8 万、评论 7824，为本周官方单条最高互动</span>，玩家一致好评"早该做了"。
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <span class="tl-dot c-opt"></span>
+      <div class="tl-head"><span class="tl-date">07.20</span><span class="tl-title">兰PV废稿幕后向内容出圈</span><span class="tl-toggle">▾</span></div>
+      <div class="tl-body">
+        "超绝不经意展示出兰PV的废稿"，<span class="kw-hl">小红书官号最高赞 2.7 万</span>，引发玩家对角色设计的高度讨论（"废稿比正式版还好看"）。
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <span class="tl-dot c-daily"></span>
+      <div class="tl-head"><span class="tl-date">07.18-24</span><span class="tl-title">常规内容运营矩阵</span><span class="tl-toggle">▾</span></div>
+      <div class="tl-body">
+        每周趣闻速递第十一期、员工下班日常02、<span class="kw-hl">鬼屋超级躲猫猫新玩法</span>（B站播放 9.0 万，玩法侧最高）、农场装修系统上线（首款主建筑皮肤·风车小屋）、阿念巫铃儿时装爆料等。全周三平台共发布 13 组内容，日均近 2 组。
+      </div>
+    </div>
+
+  </div>
+  <p class="source-note">数据来源：官方微博、官网公告、小红书/抖音/B站官方账号发布内容。互动数据见 Part 2 三平台汇总表。</p>
+</div>
+
+<!-- Part 2 -->
+<div class="section">
+  <h2 class="section-title"><span class="icon icon-red">📱</span> Part 2 官号内容运营</h2>
+
+  <h3 style="font-size:16px; margin-bottom:16px; color:var(--text-light);">各平台官号粉丝量</h3>
+  <div class="fans-grid">
+    <div class="fan-item">
+      <div class="platform-icon" style="background:var(--dy);">抖音</div>
+      <div class="fan-data"><div class="fan-count">468.3万</div><div class="fan-label">官方账号粉丝</div></div>
+    </div>
+    <div class="fan-item">
+      <div class="platform-icon" style="background:var(--xhs);">小红书</div>
+      <div class="fan-data"><div class="fan-count">252万+</div><div class="fan-label">获赞收藏 2384万+ · 游戏行业榜 #8</div></div>
+    </div>
+    <div class="fan-item">
+      <div class="platform-icon" style="background:var(--wb);">微博</div>
+      <div class="fan-data"><div class="fan-count">106.6万</div><div class="fan-label">超话活跃</div></div>
+    </div>
+    <div class="fan-item">
+      <div class="platform-icon" style="background:var(--bili);">B站</div>
+      <div class="fan-data"><div class="fan-count">48.5万</div><div class="fan-label">官方账号粉丝</div></div>
+    </div>
+  </div>
+  <p class="source-note">数据来源：各平台官方账号主页公开数据。小红书官号粉丝 252万+、获赞收藏 2384万+ 据<a href="https://new.qq.com/rain/a/20260714A04ZWU00" target="_blank" style="color:var(--blue);">腾讯新闻 07.14 报道</a>原文，千瓜数据小红书游戏应用行业榜位列企业账号 #8；B站官方账号粉丝 48.5 万（以主页实时显示为准）。</p>
+
+  <h3 style="font-size:16px; margin:24px 0 12px; color:var(--text-light);">本周内容发布小结</h3>
+  <div class="expo-grid" style="margin-bottom:16px;">
+    <div class="expo-card" style="background:linear-gradient(135deg,#eef2ff,#f8faff);">
+      <div class="plat-name">全周发布内容</div>
+      <div class="expo-val">13<small>组</small><span class="expo-tag flat">日均≈2组</span></div>
+      <div class="expo-sub">小红书 / 抖音 / B站 三平台同步</div>
+    </div>
+    <div class="expo-card dy">
+      <div class="plat-row"><span class="plat-badge" style="background:#111;">抖</span><span class="plat-name">抖音单条最高赞</span></div>
+      <div class="expo-val">8.8<small>万</small><span class="expo-tag up">🔥最高</span></div>
+      <div class="expo-sub">小地图优化「阿念脖子拯救计划」</div>
+    </div>
+    <div class="expo-card xhs">
+      <div class="plat-row"><span class="plat-badge" style="background:#ff2442;">红</span><span class="plat-name">小红书单条最高赞</span></div>
+      <div class="expo-val">2.7<small>万</small><span class="expo-tag up">🔥最高</span></div>
+      <div class="expo-sub">幕后向「兰PV废稿」</div>
+    </div>
+    <div class="expo-card" style="background:linear-gradient(135deg,#fff0f5,#fff8fb);">
+      <div class="plat-row"><span class="plat-badge" style="background:var(--bili);">B</span><span class="plat-name">B站单条最高播放</span></div>
+      <div class="expo-val">9.0<small>万</small><span class="expo-tag up">🔥最高</span></div>
+      <div class="expo-sub">鬼屋超级躲猫猫新玩法</div>
+    </div>
+  </div>
+  <div class="summary-box">
+    <strong>内容类型分布：</strong>新怪物/地图爆料、联动预热、版本优化、时装展示、趣闻速递、员工日常等，覆盖玩法更新与情感运营两条主线。联动类内容（果宝第二弹、阿念巫铃儿时装）在抖音普遍破 8 万赞，为本周互动天花板。
+  </div>
+
+  <h3 style="font-size:16px; margin:24px 0 12px; color:var(--text-light);">📋 本周发布内容 · 三平台互动数据汇总</h3>
+  <div style="overflow-x:auto;">
+  <table class="content-table">
+    <thead>
+      <tr>
+        <th rowspan="2">日期</th>
+        <th rowspan="2" class="title-cell">内容标题</th>
+        <th rowspan="2">类型</th>
+        <th colspan="3" class="plat-head-xhs">小红书 ❤收藏评</th>
+        <th colspan="2" class="plat-head-dy">抖音 ❤评</th>
+        <th colspan="2" class="plat-head-bili">B站 ▶评</th>
+      </tr>
+      <tr>
+        <th class="plat-head-xhs">点赞</th><th class="plat-head-xhs">收藏</th><th class="plat-head-xhs">评论</th>
+        <th class="plat-head-dy">点赞</th><th class="plat-head-dy">评论</th>
+        <th class="plat-head-bili">播放</th><th class="plat-head-bili">评论</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="highlight">
+        <td>07.22</td>
+        <td class="title-cell">小地图能边走边看，阿念脖子拯救计划已开启 <span class="tag tag-hot">🔥抖音最高赞</span></td>
+        <td><span class="tag tag-content">优化</span></td>
+        <td class="num">1.5万</td><td class="num">1781</td><td class="num">3606</td>
+        <td class="num num-strong">8.8万</td><td class="num">7824</td>
+        <td class="num">2.8万</td><td class="num">69</td>
+      </tr>
+      <tr>
+        <td>07.22</td>
+        <td class="title-cell">云南虫谷多队傩女爆料，龙珠房最严厉的BOSS</td>
+        <td><span class="tag tag-new">新内容</span></td>
+        <td class="num">5221</td><td class="num">584</td><td class="num">1067</td>
+        <td class="num">1.3万</td><td class="num">1093</td>
+        <td class="num">1.0万</td><td class="num">20</td>
+      </tr>
+      <tr>
+        <td>07.21</td>
+        <td class="title-cell">云南虫谷摸金模式新怪物【巨型戏偶】爆料</td>
+        <td><span class="tag tag-new">新内容</span></td>
+        <td class="num">1.6万</td><td class="num">2229</td><td class="num">2689</td>
+        <td class="num">8.4万</td><td class="num">5990</td>
+        <td class="num">5.0万</td><td class="num">62</td>
+      </tr>
+      <tr>
+        <td>07.21</td>
+        <td class="title-cell">果宝特攻，也要上工！时装模型展示来啦</td>
+        <td><span class="tag tag-collab">联动</span></td>
+        <td class="num">1.4万</td><td class="num">1705</td><td class="num">5437</td>
+        <td class="num">6.1万</td><td class="num">8920</td>
+        <td class="num">4.2万</td><td class="num">51</td>
+      </tr>
+      <tr class="highlight">
+        <td>07.20</td>
+        <td class="title-cell">超绝不经意展示出兰PV的废稿 <span class="tag tag-hot">🔥小红书最高赞</span></td>
+        <td><span class="tag tag-content">幕后</span></td>
+        <td class="num num-strong">2.7万</td><td class="num">4006</td><td class="num">3491</td>
+        <td class="num">8.2万</td><td class="num">4762</td>
+        <td class="dash">—</td><td class="dash">—</td>
+      </tr>
+      <tr>
+        <td>07.20</td>
+        <td class="title-cell">【阿念-橙留香】【巫铃儿-上官子怡】时装爆料</td>
+        <td><span class="tag tag-collab">联动</span></td>
+        <td class="num">1.6万</td><td class="num">2099</td><td class="num">9086</td>
+        <td class="num num-strong">8.4万</td><td class="num">1.5万</td>
+        <td class="num">6.5万</td><td class="num">84</td>
+      </tr>
+      <tr>
+        <td>07.19</td>
+        <td class="title-cell">超自然行动组 x 果宝特攻 联动第二弹爆料！</td>
+        <td><span class="tag tag-collab">联动</span></td>
+        <td class="num">1.8万</td><td class="num">2481</td><td class="num">6307</td>
+        <td class="num num-strong">8.8万</td><td class="num">1.3万</td>
+        <td class="num">4.8万</td><td class="num">77</td>
+      </tr>
+      <tr>
+        <td>07.19</td>
+        <td class="title-cell">云南虫谷多队【极高危】BOSS爆料</td>
+        <td><span class="tag tag-new">新内容</span></td>
+        <td class="num">1.7万</td><td class="num">2222</td><td class="num">2304</td>
+        <td class="num">5.8万</td><td class="num">3744</td>
+        <td class="num num-strong">8.1万</td><td class="num">65</td>
+      </tr>
+      <tr>
+        <td>07.19</td>
+        <td class="title-cell">【员工下班日常02】我避他锋芒？！</td>
+        <td><span class="tag tag-content">日常</span></td>
+        <td class="num">1.5万</td><td class="num">1823</td><td class="num">1448</td>
+        <td class="num">4.9万</td><td class="num">2932</td>
+        <td class="dash">—</td><td class="dash">—</td>
+      </tr>
+      <tr>
+        <td>07.18</td>
+        <td class="title-cell">云南虫谷多队地图爆料，傩女异变，恐怖再临</td>
+        <td><span class="tag tag-new">新内容</span></td>
+        <td class="num">1.9万</td><td class="num">2723</td><td class="num">4376</td>
+        <td class="num">7.5万</td><td class="num">6094</td>
+        <td class="num">7.3万</td><td class="num">100</td>
+      </tr>
+      <tr>
+        <td>07.18</td>
+        <td class="title-cell">趣闻速递第十一期！已有员工研发出20G网</td>
+        <td><span class="tag tag-content">趣闻</span></td>
+        <td class="num">1.9万</td><td class="num">2921</td><td class="num">2853</td>
+        <td class="num">8.0万</td><td class="num">4381</td>
+        <td class="num">7.5万</td><td class="num">86</td>
+      </tr>
+      <tr class="highlight">
+        <td>07.18</td>
+        <td class="title-cell">鬼屋新玩法超级躲猫猫，职业选手不准参赛！ <span class="tag" style="background:#fce4ec;color:#c2185b;">🔥B站最高播放</span></td>
+        <td><span class="tag tag-new">新玩法</span></td>
+        <td class="num">1.9万</td><td class="num">2765</td><td class="num">3004</td>
+        <td class="num">6.6万</td><td class="num">4656</td>
+        <td class="num num-strong">9.0万</td><td class="num">86</td>
+      </tr>
+      <tr>
+        <td>07.18</td>
+        <td class="title-cell">农场装修系统已上线！首款主建筑皮肤来啦</td>
+        <td><span class="tag tag-new">新系统</span></td>
+        <td class="num">1万</td><td class="num">1039</td><td class="num">2123</td>
+        <td class="num">4.1万</td><td class="num">3432</td>
+        <td class="dash">—</td><td class="dash">—</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="source-note">数据来源：小红书 / 抖音官方账号逐条截图（用户提供），B站数据来自官方账号发布列表截图。"—" 表示该内容未在 B站发布或未纳入统计。抖音收藏/转发数据见原始截图，此处主表突出点赞与评论。</p>
+
+  <div class="foldbox" id="cmtFold">
+    <div class="fb-summary">
+      <div class="fb-lead">💬 <strong>官方内容评论区高频观点小结：</strong>本周官方发布内容评论区整体<strong>正面为主</strong>——联动回忆杀（果宝机甲归位）、小地图优化、兰PV废稿美术三大点收获集中好评；负面声音聚焦于<strong>虫谷多队门票偏贵/爆率、iOS 闪退、皮肤上新过频</strong>三方面。</div>
+      <span class="fb-toggle" onclick="this.closest('.foldbox').classList.toggle('open')">展开正/负面具体观点 <span class="fb-arrow">▾</span></span>
+    </div>
+    <div class="fb-detail">
+      <ul class="cmt-list">
+        <li><span class="senti-tag pos">正面</span>"果宝联动回忆杀太上头"，"果宝机甲归位"舞蹈刷屏</li>
+        <li><span class="senti-tag pos">正面</span>"小地图优化早该做了 / 终于不用低头看脚下"</li>
+        <li><span class="senti-tag pos">正面</span>"兰的废稿比正式版还好看"，认可美术用心</li>
+        <li><span class="senti-tag neg">负面</span>"虫谷多队门票太贵、爆率求提高"（门票为昆仑2倍多）</li>
+        <li><span class="senti-tag neg">负面</span>"苹果闪退bug求修复"——多条内容评论区高频出现</li>
+        <li><span class="senti-tag neg">负面</span>"皮肤上新太频繁、2400保底跟不上消费节奏"</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Part 3 -->
+<div class="section">
+  <h2 class="section-title"><span class="icon icon-green">🎬</span> Part 3 三方内容讨论</h2>
+
+  <h3 style="font-size:16px; margin-bottom:12px;">各平台话题量与热点概况</h3>
+  <div class="summary-box">
+    • <strong>抖音</strong>：#超自然行动组 累计播放 359.1亿；本周玩家二创围绕"躲猫猫、四队求佛、撞主播、直播趣事"高频出圈<br>
+    • <strong>快手</strong>：#超自然行动组 累计播放 1132.9亿，为体量最大的短视频阵地<br>
+    • <strong>小红书</strong>：话题浏览 93.9亿 / 讨论 7883.8万；玩家攻略向（虫谷百万撤离、卡音响、家具形象讨论）内容集中<br>
+    • <strong>热梗</strong>：「兰PV废稿」设计讨论、「果宝机甲归位」联动舞蹈、「阿念脖子拯救计划」小地图优化梗、「新家具男女号待遇」形象吐槽
+  </div>
+
+  <!-- 抖音 TOP3 -->
+  <div class="top3-title"><span class="badge" style="background:#000;">抖音</span> 本周玩家高赞内容 TOP3 <span style="font-size:12px;color:var(--text-light);font-weight:400;">（按点赞排序）</span></div>
+  <div class="top3-grid">
+    <div class="top3-card">
+      <div class="thumb"><span class="rank rank-1">1</span><img src="assets/dy_top_qingchen.jpg" alt="清辰"></div>
+      <div class="body">
+        <div class="author">👤 @清辰(超自然行动组)</div>
+        <div class="caption">"是吗来我看看" · 女号新家具展示互动</div>
+        <div class="metrics"><span>❤ 点赞 <b>5.7万</b></span><span>💬 评论 <b>704</b></span><span>⭐ 收藏 <b>2.1万</b></span><span>↗ 转发 <b>7857</b></span></div>
+        <a class="linkchip" href="https://www.douyin.com/search/清辰%20超自然行动组" target="_blank">🔗 抖音查看</a>
+      </div>
+    </div>
+    <div class="top3-card">
+      <div class="thumb"><span class="rank rank-2">2</span><img src="assets/dy_top_yuehui.jpg" alt="月歼"></div>
+      <div class="body">
+        <div class="author">👤 @月歼</div>
+        <div class="caption">"打四队撞到主播了" · 摸金撞主播名场面</div>
+        <div class="metrics"><span>❤ 点赞 <b>5.2万</b></span><span>💬 评论 <b>453</b></span><span>⭐ 收藏 <b>6805</b></span><span>↗ 转发 <b>2105</b></span></div>
+        <a class="linkchip" href="https://www.douyin.com/search/月歼%20超自然行动组" target="_blank">🔗 抖音查看</a>
+      </div>
+    </div>
+    <div class="top3-card">
+      <div class="thumb"><span class="rank rank-3">3</span><img src="assets/dy_top_xiazuo.jpg" alt="下作"></div>
+      <div class="body">
+        <div class="author">👤 @下作</div>
+        <div class="caption">"我不知道为什么他们就是看不见我" · 躲猫猫名场面</div>
+        <div class="metrics"><span>❤ 点赞 <b>4.3万</b></span><span>💬 评论 <b>1895</b></span><span>⭐ 收藏 <b>3804</b></span><span>↗ 转发 <b>1.6万</b></span></div>
+        <a class="linkchip" href="https://www.douyin.com/search/下作%20超自然行动组%20躲猫猫" target="_blank">🔗 抖音查看</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 小红书 TOP3 -->
+  <div class="top3-title" style="margin-top:28px;"><span class="badge" style="background:var(--xhs);">小红书</span> 本周玩家高赞内容 TOP3 <span style="font-size:12px;color:var(--text-light);font-weight:400;">（按点赞排序）</span></div>
+  <div class="top3-grid">
+    <div class="top3-card">
+      <div class="thumb"><span class="rank rank-1">1</span><img src="assets/xhs_top_biebiezi.jpg" alt="别别子"></div>
+      <div class="body">
+        <div class="author">👤 @别别子</div>
+        <div class="caption">"男号能不能注意点形象！" · 新家具男女号待遇对比</div>
+        <div class="metrics"><span>❤ 点赞 <b>3万</b></span><span>⭐ 收藏 <b>9034</b></span><span>💬 评论 <b>1098</b></span></div>
+        <a class="linkchip" href="https://www.xiaohongshu.com/search_result?keyword=别别子%20超自然行动组" target="_blank">🔗 小红书查看</a>
+      </div>
+    </div>
+    <div class="top3-card">
+      <div class="thumb"><span class="rank rank-2">2</span><img src="assets/xhs_top_xiaolizi.jpg" alt="小栗子"></div>
+      <div class="body">
+        <div class="author">👤 @小栗子</div>
+        <div class="caption">"双排炸裂虫谷 十六棺百万撤离" · 卡音响攻略争议</div>
+        <div class="metrics"><span>❤ 点赞 <b>2万</b></span><span>⭐ 收藏 <b>4967</b></span><span>💬 评论 <b>764</b></span></div>
+        <a class="linkchip" href="https://www.xiaohongshu.com/search_result?keyword=小栗子%20超自然行动组%20虫谷" target="_blank">🔗 小红书查看</a>
+      </div>
+    </div>
+    <div class="top3-card">
+      <div class="thumb"><span class="rank rank-3">3</span><img src="assets/xhs_top_jiuchuan.jpg" alt="sky酒川"></div>
+      <div class="body">
+        <div class="author">👤 @sky酒川</div>
+        <div class="caption">"双排虫谷十六棺百万撤离" · 四队求佛心态讨论</div>
+        <div class="metrics"><span>❤ 点赞 <b>1.9万</b></span><span>⭐ 收藏 <b>3088</b></span><span>💬 评论 <b>452</b></span></div>
+        <a class="linkchip" href="https://www.xiaohongshu.com/search_result?keyword=sky酒川%20超自然行动组" target="_blank">🔗 小红书查看</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- B站 TOP3 -->
+  <div class="top3-title" style="margin-top:28px;"><span class="badge" style="background:var(--bili);">B站</span> 本周玩家高播放内容 TOP3 <span style="font-size:12px;color:var(--text-light);font-weight:400;">（按播放排序 · 抓取自B站搜索API）</span></div>
+  <div style="overflow-x:auto;">
+  <table class="content-table">
+    <thead>
+      <tr>
+        <th>排名</th><th class="title-cell">视频标题</th><th>UP主</th>
+        <th>发布</th><th>播放</th><th>点赞</th><th>点赞率</th><th>收藏</th><th>链接</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="tag" style="background:#fff3d6;color:#c8860a;">🥇1</span></td>
+        <td class="title-cell">关于青鸟是恋爱脑这件事</td>
+        <td>玖宝-吖</td><td>07.18</td>
+        <td class="num num-strong">68.5万</td><td class="num">4120</td><td class="num">0.6%</td><td class="num">4328</td>
+        <td><a href="https://www.bilibili.com/video/BV1TXKw6TE1J" target="_blank">BV1TXK…</a></td>
+      </tr>
+      <tr>
+        <td><span class="tag" style="background:#eef1f3;color:#78909c;">🥈2</span></td>
+        <td class="title-cell">回去之后的你 belike:（联动情怀向二创）</td>
+        <td>评论鉴赏家</td><td>07.19</td>
+        <td class="num num-strong">66.3万</td><td class="num">3.1万</td><td class="num">4.7%</td><td class="num">2611</td>
+        <td><a href="https://www.bilibili.com/video/BV18uKB6GE1g" target="_blank">BV18uK…</a></td>
+      </tr>
+      <tr>
+        <td><span class="tag" style="background:#f6e3d3;color:#a05a2c;">🥉3</span></td>
+        <td class="title-cell">百万神作《隐藏结局》通灵画家！疯人院3座大山怎么打</td>
+        <td>蛋蛋的幽霜</td><td>07.21</td>
+        <td class="num num-strong">42.9万</td><td class="num">1.5万</td><td class="num">3.4%</td><td class="num">1.8万</td>
+        <td><a href="https://www.bilibili.com/video/BV1WwKx6bEwG" target="_blank">BV1WwK…</a></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="source-note">B站数据来源：bilibili 搜索接口（search/type）+ 视频详情接口（web-interface/view），筛选 07.18-07.24 发布、按播放量排序，抓取时间 2026.07.23。点赞率 = 点赞 / 播放。</p>
+</div>
+
+<!-- Part 4 -->
+<div class="section">
+  <h2 class="section-title"><span class="icon icon-purple">📊</span> Part 4 全网评分 / 舆情分析</h2>
+
+  <div class="senti-cards">
+    <div class="senti-card warn"><div class="big">6.7</div><div class="cap">TapTap评分</div><div class="sub">2.8万+条评价 ⚠️</div></div>
+    <div class="senti-card split"><div class="big">吸金≠口碑</div><div class="cap">全网舆情基调</div><div class="sub">财报暴增 vs 社区骂声</div></div>
+    <div class="senti-card heart"><div class="big">现象级</div><div class="cap">商业表现</div><div class="sub">2亿注册 / 千万DAU</div></div>
+    <div class="senti-card good"><div class="big">社交</div><div class="cap">核心黏性</div><div class="sub">熟人组队 / 梗文化</div></div>
+  </div>
+
+  <div class="senti-flex">
+    <div class="senti-panel">
+      <h3>全网舆情情绪分布</h3>
+      <div class="chart-box" style="height:280px;"><canvas id="sentiChart"></canvas></div>
+      <p class="source-note" style="text-align:center;">综合 TapTap 评价 + B站/抖音/小红书评论 + 微博超话 + 贴吧/NGA + 媒体报道</p>
+    </div>
+    <div class="senti-panel">
+      <h3>全网舆情关键词图谱</h3>
+      <div class="kw-cloud">
+        <span class="kw neg xl">外挂泛滥</span>
+        <span class="kw neg xl">皮肤氪金过频</span>
+        <span class="kw pos l">中式微恐题材</span>
+        <span class="kw neg l">卡顿/苹果闪退</span>
+        <span class="kw neg l">金皮比王者贵</span>
+        <span class="kw pos m">四人组队社交爽</span>
+        <span class="kw neg m">抄袭/缝合怪争议</span>
+        <span class="kw pos m">名场面/梗文化</span>
+        <span class="kw neg m">数值失衡/轮椅角色</span>
+        <span class="kw neu m">入场费机制争议</span>
+        <span class="kw pos m">鬼吹灯联动出圈</span>
+        <span class="kw neg s">bug修复慢</span>
+        <span class="kw neu m">怪物爆率低</span>
+        <span class="kw pos m">果宝联动回忆杀</span>
+        <span class="kw neg s">控评/删评</span>
+        <span class="kw neu s">老玩家退游潮</span>
+        <span class="kw pos m">小地图优化好评</span>
+        <span class="kw neg s">客服机械回复</span>
+      </div>
+      <p class="source-note" style="margin-top:14px;">⚠️ 本周期舆情呈明显<strong>两极分化</strong>：商业侧（流水/DAU/联动）广受媒体正面报道，玩家社区侧（外挂/氪金/bug）负面情绪集中，二者构成"一边吸金一边挨骂"的典型反差。</p>
+    </div>
+  </div>
+
+  <h3 style="font-size:16px; margin:24px 0 12px;">玩家讨论焦点对比 · TOP5</h3>
+  <div class="fb-compare">
+    <div class="fb-col pos">
+      <div class="fb-hd"><span class="fb-emoji">👍</span>正面讨论 TOP5<span class="fb-count">好评侧</span></div>
+      <div class="fb-item">
+        <span class="fb-rank r1">1</span>
+        <div class="fb-body"><div class="fb-t">差异化题材<span class="fb-tag">题材</span></div><div class="fb-d">中式微恐 + 搜打撤填补市场空白，"古墓探险+四人组队"体验独特</div></div>
+      </div>
+      <div class="fb-item">
+        <span class="fb-rank">2</span>
+        <div class="fb-body"><div class="fb-t">强社交黏性<span class="fb-tag">社交</span></div><div class="fb-d">熟人组队、实时语音、翻车名场面构成核心黏性与"梗文化"</div></div>
+      </div>
+      <div class="fb-item">
+        <span class="fb-rank">3</span>
+        <div class="fb-body"><div class="fb-t">小地图优化好评<span class="fb-tag">本周</span></div><div class="fb-d">边走边看实用性获广泛好评，玩家直呼"早该做了"</div></div>
+      </div>
+      <div class="fb-item">
+        <span class="fb-rank">4</span>
+        <div class="fb-body"><div class="fb-t">联动情怀拉满<span class="fb-tag">联动</span></div><div class="fb-d">鬼吹灯"云南虫谷"、果宝特攻回忆杀带动情怀向讨论</div></div>
+      </div>
+      <div class="fb-item">
+        <span class="fb-rank">5</span>
+        <div class="fb-body"><div class="fb-t">建模/还原用心<span class="fb-tag">美术</span></div><div class="fb-d">建模、仿妆、角色还原度高，兰PV废稿显制作组用心</div></div>
+      </div>
+    </div>
+    <div class="fb-col neg">
+      <div class="fb-hd"><span class="fb-emoji">👎</span>负面讨论 TOP5<span class="fb-count">吐槽侧</span></div>
+      <div class="fb-item">
+        <span class="fb-rank r1">1</span>
+        <div class="fb-body"><div class="fb-t">外挂泛滥<span class="fb-tag">头号痛点</span></div><div class="fb-d">透视/自瞄/加速挂泛滥，"十局八局遇挂"，"零容忍"被指形同虚设、封禁6小时即复开</div></div>
+      </div>
+      <div class="fb-item">
+        <span class="fb-rank">2</span>
+        <div class="fb-body"><div class="fb-t">皮肤氪金过频<span class="fb-tag">定价</span></div><div class="fb-d">约每两周上新一款限定，"金皮比王者/无双还贵"、红色典藏保底破1500元</div></div>
+      </div>
+      <div class="fb-item">
+        <span class="fb-rank">3</span>
+        <div class="fb-body"><div class="fb-t">优化差/闪退/卡墙<span class="fb-tag">技术</span></div><div class="fb-d">服务器卡顿、掉线、卡模、充值未到账等基础 bug 长期未修</div></div>
+      </div>
+      <div class="fb-item">
+        <span class="fb-rank">4</span>
+        <div class="fb-body"><div class="fb-t">数值失衡/轮椅角色<span class="fb-tag">平衡</span></div><div class="fb-d">付费配套武器超模、"选对角色赢一半"，技术优势被氪金抹平</div></div>
+      </div>
+      <div class="fb-item">
+        <span class="fb-rank">5</span>
+        <div class="fb-body"><div class="fb-t">抄袭争议+控评<span class="fb-tag">口碑</span></div><div class="fb-d">"缝合怪缝不到精髓"、伪人玩法争议，社区吐槽被删评、老玩家退游潮</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foldbox" id="reviewFold">
+    <div class="fb-summary">
+      <div class="fb-lead">🗣️ <strong>TapTap 玩家真实长评小结（数据来源支撑）：</strong>TapTap 评价区共 <strong>28,566</strong> 条评价、评分 <strong>6.7</strong>，本周期高赞长评集中吐槽三点——<strong>外挂泛滥且封禁形同虚设</strong>（四队 10 局 8 局遇挂、封 6 小时复开）、<strong>皮肤氪金过重</strong>（金皮 520 余元 / 红皮保底约 1500）、<strong>抄袭缝合争议</strong>（玩法近《致命公司》、画风近《第五人格》）。以下节选 3 条真实高赞长评，均附原文链接可核验。</div>
+      <span class="fb-toggle" onclick="this.closest('.foldbox').classList.toggle('open')">展开 3 条真实长评原文 <span class="fb-arrow">▾</span></span>
+    </div>
+    <div class="fb-detail">
+      <div class="review-quotes">
+        <div class="review-quote">
+          <div class="rq-head"><span class="rq-user">@某5000场老玩家</span><span class="rq-badge mix">中立·4天前</span><span>1584 小时时长</span></div>
+          <div class="rq-text">"游戏体验还行，对萌新比较友好……但 TapTap 上被骂得最狠的就是<span class="hl">抄袭缝合怪</span>——核心玩法照搬《致命公司》，画风和《第五人格》相似度 90%；<span class="hl">开挂毁所有，举报系统形同虚设</span>；最贵幻梦级皮肤 1200-1500 元质量却敷衍。" <a class="linkchip" href="https://www.taptap.cn/app/714123/review" target="_blank">🔗 TapTap 评价区</a></div>
+        </div>
+        <div class="review-quote">
+          <div class="rq-head"><span class="rq-user">@晚</span><span class="rq-badge neg">差评·氪金3880元</span><span>291 小时</span></div>
+          <div class="rq-text">"外挂泛滥是压垮玩家的第一根稻草，<span class="hl">四队模式 10 局 8 局遇挂</span>，举报机制形同虚设，开挂者仅被封禁 <span class="hl">6 小时便重出江湖</span>……阿念皮肤因原作者维权才仓促修改。" <a class="linkchip" href="https://taptap.cn/review/47483215" target="_blank">🔗 review/47483215</a></div>
+        </div>
+        <div class="review-quote">
+          <div class="rq-head"><span class="rq-user">@慕一云</span><span class="rq-badge neg">差评·氪金6000+</span><span>61 个皮肤</span></div>
+          <div class="rq-text">"最恶心的纯圈钱游戏……普通紫皮 50 余元，<span class="hl">金皮竟高达 520 余元，早期红皮保底 1500 左右</span>；古蜀遗迹 4队/2队模式外挂比例竟高达 <span class="hl">80%</span>；账号只需账号密码即可登录，被盗风险极高。" <a class="linkchip" href="https://taptap.cn/review/47758043" target="_blank">🔗 review/47758043</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="source-note">来源：<a href="https://www.taptap.cn/app/714123/review" target="_blank" style="color:var(--blue);">TapTap 超自然行动组评价区</a>（评分 6.7 / 28,566 条评价，含 4天前~本周最新长评）、<a href="https://www.toutiao.com/a7661957453474480675" target="_blank" style="color:var(--blue);">今日头条深度报道</a>（综合数千条差评）、官方内容评论区截图、微博超话、B站弹幕综合整理。情绪分布为基于公开内容的定性估算，非精确量化。</p>
+</div>
+
+<!-- Part 4.5 媒体报道 -->
+<div class="section">
+  <h2 class="section-title"><span class="icon icon-blue">📰</span> 本月媒体报道聚焦</h2>
+  <div class="foldbox open" id="mediaFold">
+    <div class="fb-summary">
+      <div class="fb-lead">📰 <strong>本月媒体报道小结：</strong>2026.07 巨人网络半年度业绩预告（7/7 净利润同比预增 <strong>157%~183%</strong>、达 20-22 亿元）引爆媒体密集报道，传播主线为「<strong>财报暴增 vs 口碑争议</strong>」的强反差。正面聚焦<strong>赛道 Top1、DAU 破千万、鬼吹灯联动带热</strong>；负面聚焦<strong>外挂、皮肤氪金、抄袭争议</strong>四大槽点。共 4 篇代表性报道，每条均附原文链接可核验。</div>
+      <span class="fb-toggle" onclick="this.closest('.foldbox').classList.toggle('open')">展开 4 篇报道详情 <span class="fb-arrow">▾</span></span>
+    </div>
+    <div class="fb-detail">
+      <div class="media-grid">
+        <div class="media-card tone-pos">
+          <div class="m-src">上海证券报 · 中国证券网<span class="m-date">07.07</span></div>
+          <div class="m-title">巨人网络：上半年净利润同比预增 157.38%-183.12%</div>
+          <div class="m-desc">公司预计 2026 上半年归母净利润 20-22 亿元，主因现象级手游《超自然行动组》持续贡献较高收入，为业绩增长提供重要支撑。</div>
+          <a class="linkchip" href="https://www.cnstock.com/commonDetail/739955" target="_blank">🔗 cnstock.com/commonDetail/739955</a>
+        </div>
+        <div class="media-card tone-pos">
+          <div class="m-src">腾讯新闻 · 游戏<span class="m-date">07.14</span></div>
+          <div class="m-title">再掀中式微恐热度，《超自然行动组》解释了何谓赛道 Top1</div>
+          <div class="m-desc">7/2 云南虫谷 + 7/9 鬼吹灯联动带动抖音/小红书/B站热度攀升，#超自然鬼吹灯联动 抖音播放超 2.6 亿；官方小红书粉丝突破 252 万、获赞收藏超 2384 万，畅销榜回升至 Top5。</div>
+          <a class="linkchip" href="https://new.qq.com/rain/a/20260714A04ZWU00" target="_blank">🔗 new.qq.com/rain/a/20260714A04ZWU00</a>
+        </div>
+        <div class="media-card">
+          <div class="m-src">中新网上海<span class="m-date">02.02</span></div>
+          <div class="m-title">巨人网络《超自然行动组》DAU 突破 1 千万</div>
+          <div class="m-desc">官宣日活破千万，长期稳居 iOS 畅销榜前列；官方账号矩阵粉丝规模突破 200 万，为少数在主流内容平台形成稳定粉丝资产的头部游戏 IP。（本月报道多引用该里程碑数据）</div>
+          <a class="linkchip" href="https://www.sh.chinanews.com.cn/yule/2026-02-02/144444.shtml" target="_blank">🔗 sh.chinanews.com.cn/yule/2026-02-02</a>
+        </div>
+        <div class="media-card tone-neg">
+          <div class="m-src">今日头条 · 深度<span class="m-date">07月</span></div>
+          <div class="m-title">净利润翻倍，玩家却骂声一片：为何一边被喷一边吸金？</div>
+          <div class="m-desc">综合数千条差评，直指四大槽点——外挂治理（"十把八把遇挂"、封禁仅 6 小时）、皮肤氪金过频（每周 1-2 款、限定破千元）、抄袭争议（玩法近《致命公司》）、服务器卡顿。TapTap 6.7、2.8 万+评价。</div>
+          <a class="linkchip" href="https://www.toutiao.com/a7661957453474480675" target="_blank">🔗 toutiao.com/a7661957453474480675</a>
+        </div>
+      </div>
+      <p class="source-note" style="margin-top:14px;">来源均为公开报道原文链接（截至 2026.07.23 可访问）。tone 色条：绿=正面 / 蓝=中性 / 红=偏负面。2 月中新网报道纳入因其为本月多篇「千万DAU/粉丝规模」报道的原始数据出处。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Part 5 -->
+<div class="section">
+  <h2 class="section-title"><span class="icon icon-orange">🎮</span> Part 5 同期 like 游戏动态</h2>
+  <div class="competitor-grid">
+    <div class="competitor-card">
+      <h4>🃏 第五人格（网易）</h4>
+      <div class="desc">
+        <strong>重大事件：</strong>7月16日 <span style="color:var(--accent);font-weight:600;">×《盗墓笔记》联动第一弹「吴山居的归客」</span>正式开启（活动至 8/17）。<br><br>
+        <strong>本周动态：</strong>
+        <ul style="margin-top:8px; padding-left:16px; line-height:2;">
+          <li>7/16 盗墓笔记联动：上线吴邪/张起灵/王胖子联动时装、蛇眉铜鱼/鬼玺随身物品，联动礼包 1958 回声（8折）</li>
+          <li>7/15 预告 2026「心跳·游园会」+ COSPLAY 全国大赛、同人市集</li>
+          <li>7/9 溯洄系列奇珍时装（先知-踏雪来、爱哭鬼-露营日）上架</li>
+          <li>IVL 夏季赛第六周进行中，赛事热度持续</li>
+        </ul><br>
+        <strong>⚠️ 关注点：</strong>同为"中式恐怖/志怪题材 + 非对称对抗"，且与超自然本周同期主打 <span style="color:var(--accent);font-weight:600;">盗墓IP联动</span>（超自然为鬼吹灯、第五为盗墓笔记），在暑期档争夺同一批"国风恐怖 + 组队社交"玩家心智，联动打法高度撞车，需密切跟踪其联动口碑与拉新效果。
+      </div>
+    </div>
+    <div class="competitor-card">
+      <h4>🌊 遗忘之海（网易 Joker事业部）</h4>
+      <div class="desc">
+        <strong>重大事件：</strong>7月23日（本周）移动端正式上线！PC端已于7月9日公测。<br><br>
+        <strong>动态：</strong>
+        <ul style="margin-top:8px; padding-left:16px; line-height:2;">
+          <li>PC端7月9日公测，与腾讯《失控进化》同日形成暑期档话题</li>
+          <li>全平台预约量超3700万，公测期间斩获20+热搜话题</li>
+          <li>Alan Walker × 张韶涵联合打造主题曲MV</li>
+          <li>第五人格联动、海绵宝宝IP联动暑期上线</li>
+          <li>摩根大通预计年流水50亿元</li>
+        </ul><br>
+        <strong>⚠️ 关注点：</strong>移动端本周上线是直接竞争节点，虽为开放世界RPG非同品类，但争夺同一批年轻玩家时间。
+      </div>
+    </div>
+    <div class="competitor-card">
+      <h4>⚔️ 诡影藏锋（网易 雷火工作室）</h4>
+      <div class="desc">
+        <strong>重大事件：</strong>7月8日实机首曝 + Steam页面上线，8月7日开启首测。<br><br>
+        <strong>动态：</strong>
+        <ul style="margin-top:8px; padding-left:16px; line-height:2;">
+          <li>7月7日Steam商店页上线，标注免费开玩</li>
+          <li>7月8日首曝PV及实机演示，B站播放破546万</li>
+          <li>UE5引擎打造，中式志怪+冷兵器+第一人称搜打撤</li>
+          <li>全平台预约突破1000万，8月7日开启「藏锋测试」PC端首测</li>
+          <li>7月10日BW2026提供线下试玩，今年5月获版号</li>
+        </ul><br>
+        <strong>⚠️ 关注点：</strong>与超自然行动组同属搜打撤赛道，差异化在于冷兵器+第一人称+硬核向。8月首测后需密切跟踪玩家口碑走向。
+      </div>
+    </div>
+  </div>
+  <p class="source-note">数据来源：第五人格官网/官微（id5.163.com、7/16 联动公告）、GameLook、游民星空、华夏时报、TapTap、Steam商店页等公开报道。"like游戏"含同题材（恐怖/志怪）、同玩法（搜打撤/非对称对抗）及暑期档强竞争产品。</p>
+</div>
+
+<div class="footer">
+  <p>超自然行动组 热度监测周报 | 监测周期 2026.07.18 - 07.24</p>
+  <p style="margin-top:4px;">报告生成时间：2026年7月23日 | 数据均来源于公开渠道及用户提供截图，标注来源处详见各模块备注</p>
+</div>
+
+</div>
+
+<script>
+// 情绪分布环形图
+const sc = document.getElementById('sentiChart').getContext('2d');
+new Chart(sc, {
+  type: 'doughnut',
+  data: {
+    labels: ['正面(题材/社交/联动/优化好评)','中立(观望/讨论/退游犹豫)','负面(外挂/氪金/bug/数值/抄袭)'],
+    datasets: [{
+      data: [30, 22, 48],
+      backgroundColor: ['#2ecc71','#8592a6','#e74c3c'],
+      borderWidth: 2, borderColor:'#fff'
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, cutout: '62%',
+    plugins: {
+      legend: { position:'bottom', labels:{ boxWidth:12, font:{size:11} } },
+      tooltip: { callbacks: { label: c => c.label.split('(')[0] + ' ' + c.parsed + '%' } }
+    }
+  }
+});
+
+// 官方动作时间线 折叠交互
+document.querySelectorAll('.tl-head').forEach(h => {
+  h.addEventListener('click', () => {
+    h.closest('.tl-item').classList.toggle('open');
+  });
+});
+</script>
+</body>
+</html>

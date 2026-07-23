@@ -381,6 +381,14 @@ body {
 /* 链接徽标 */
 a.linkchip { display:inline-block; font-size:11px; color:var(--blue); text-decoration:none; border:1px solid #cfe6fb; background:#f0f8ff; padding:1px 8px; border-radius:10px; margin-top:6px; }
 a.linkchip:hover { background:#e0f0ff; }
+/* 游戏媒体深度分析卡片（跨列突出） */
+.media-card.feature { grid-column:1 / -1; border-left-color:#7c5cff; background:linear-gradient(180deg,#faf9ff 0%,#fbfcfd 100%); }
+.media-card.feature .m-src { color:#7c5cff; }
+.media-card .m-badge { display:inline-block; font-size:10px; font-weight:700; color:#fff; background:#7c5cff; padding:1px 7px; border-radius:4px; margin-left:8px; vertical-align:middle; }
+.media-card .m-points { margin:10px 0 4px; padding:0; list-style:none; }
+.media-card .m-points li { font-size:12px; color:var(--text-light); line-height:1.7; padding-left:18px; position:relative; margin-bottom:4px; }
+.media-card .m-points li::before { content:'▹'; position:absolute; left:2px; color:#7c5cff; font-weight:700; }
+.media-card .m-points li strong { color:var(--text); }
 
 /* TapTap 真实长评摘录 */
 .review-quotes { display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap:14px; margin-top:12px; }
@@ -515,7 +523,7 @@ a.linkchip:hover { background:#e0f0ff; }
       <div class="m-sub">营收核心支柱</div>
     </div>
   </div>
-  <p class="source-note">数据来源：<a href="https://www.qimai.cn/app/rank/appid/6444936298/country/cn" target="_blank" style="color:var(--blue);">七麦数据</a>（iOS 榜单/下载量实时监测，鬼吹灯联动版本期）、<a href="https://www.cnstock.com/commonDetail/739955" target="_blank" style="color:var(--blue);">上证报·巨人网络 H1 业绩预告</a>、<a href="https://new.qq.com/rain/a/20260714A04ZWU00" target="_blank" style="color:var(--blue);">腾讯新闻</a>、游民星空/竞核公开报道。本周排名为版本期峰值，非实时值；单日下载/收入为区间估算。</p>
+  <p class="source-note">数据来源：<a href="https://www.qimai.cn/app/rank/appid/6444936298/country/cn" target="_blank" style="color:var(--blue);">七麦数据</a>（iOS 榜单/下载量实时监测，鬼吹灯联动版本期）、<a href="https://www.cnstock.com/commonDetail/739955" target="_blank" style="color:var(--blue);">上证报·巨人网络 H1 业绩预告</a>、<a href="https://mp.weixin.qq.com/s/7plfiwiQ5eYnSZ5wsDQl4A" target="_blank" style="color:var(--blue);">竞核 07.14 深度报道</a>、游民星空公开报道。本周排名为版本期峰值，非实时值；单日下载/收入为区间估算。</p>
   </div>
 </div>
 
@@ -592,7 +600,7 @@ a.linkchip:hover { background:#e0f0ff; }
       <div class="fan-data"><div class="fan-count">48.5万</div><div class="fan-label">官方账号粉丝</div></div>
     </div>
   </div>
-  <p class="source-note">数据来源：各平台官方账号主页公开数据。小红书官号粉丝 252万+、获赞收藏 2384万+ 据<a href="https://new.qq.com/rain/a/20260714A04ZWU00" target="_blank" style="color:var(--blue);">腾讯新闻 07.14 报道</a>原文，千瓜数据小红书游戏应用行业榜位列企业账号 #8；B站官方账号粉丝 48.5 万（以主页实时显示为准）。</p>
+  <p class="source-note">数据来源：各平台官方账号主页公开数据。小红书官号粉丝 252万+、获赞收藏 2384万+ 据<a href="https://mp.weixin.qq.com/s/7plfiwiQ5eYnSZ5wsDQl4A" target="_blank" style="color:var(--blue);">竞核 07.14 深度报道</a>原文，千瓜数据小红书游戏应用行业榜位列企业账号 #8；B站官方账号粉丝 48.5 万（以主页实时显示为准）。</p>
 
   <h3 style="font-size:16px; margin:24px 0 12px; color:var(--text-light);">本周内容发布小结</h3>
   <div class="expo-grid" style="margin-bottom:16px;">
@@ -1005,7 +1013,7 @@ a.linkchip:hover { background:#e0f0ff; }
   <h2 class="section-title"><span class="icon icon-blue">📰</span> 本月媒体报道聚焦</h2>
   <div class="foldbox open" id="mediaFold">
     <div class="fb-summary">
-      <div class="fb-lead">📰 <strong>本月媒体报道小结：</strong>2026.07 巨人网络半年度业绩预告（7/7 净利润同比预增 <strong>157%~183%</strong>、达 20-22 亿元）引爆媒体密集报道，传播主线为「<strong>财报暴增 vs 口碑争议</strong>」的强反差。正面聚焦<strong>赛道 Top1、DAU 破千万、鬼吹灯联动带热</strong>；负面聚焦<strong>外挂、皮肤氪金、抄袭争议</strong>四大槽点。共 4 篇代表性报道，每条均附原文链接可核验。</div>
+      <div class="fb-lead">📰 <strong>本月媒体报道小结：</strong>2026.07 巨人网络半年度业绩预告（7/7 净利润同比预增 <strong>157%~183%</strong>、达 20-22 亿元）引爆媒体密集报道，传播主线为「<strong>财报暴增 vs 口碑争议</strong>」的强反差。财经媒体聚焦<strong>业绩暴增、DAU 破千万</strong>；游戏垂直媒体（竞核）深度拆解<strong>赛道 Top1 长线增长逻辑、鬼吹灯联动带热</strong>；负面报道聚焦<strong>外挂、皮肤氪金、抄袭争议</strong>。共 4 篇代表性报道（含 1 篇游戏行业垂媒深度分析），每条均附原文链接可核验。</div>
       <span class="fb-toggle" onclick="this.closest('.foldbox').classList.toggle('open')">展开 4 篇报道详情 <span class="fb-arrow">▾</span></span>
     </div>
     <div class="fb-detail">
@@ -1016,11 +1024,17 @@ a.linkchip:hover { background:#e0f0ff; }
           <div class="m-desc">公司预计 2026 上半年归母净利润 20-22 亿元，主因现象级手游《超自然行动组》持续贡献较高收入，为业绩增长提供重要支撑。</div>
           <a class="linkchip" href="https://www.cnstock.com/commonDetail/739955" target="_blank">🔗 cnstock.com/commonDetail/739955</a>
         </div>
-        <div class="media-card tone-pos">
-          <div class="m-src">腾讯新闻 · 游戏<span class="m-date">07.14</span></div>
+        <div class="media-card feature tone-pos">
+          <div class="m-src">竞核（游戏行业垂直媒体）· 原创深度<span class="m-badge">游戏媒体</span><span class="m-date">07.14</span></div>
           <div class="m-title">再掀中式微恐热度，《超自然行动组》解释了何谓赛道 Top1</div>
-          <div class="m-desc">7/2 云南虫谷 + 7/9 鬼吹灯联动带动抖音/小红书/B站热度攀升，#超自然鬼吹灯联动 抖音播放超 2.6 亿；官方小红书粉丝突破 252 万、获赞收藏超 2384 万，畅销榜回升至 Top5。</div>
-          <a class="linkchip" href="https://new.qq.com/rain/a/20260714A04ZWU00" target="_blank">🔗 new.qq.com/rain/a/20260714A04ZWU00</a>
+          <div class="m-desc">游戏行业垂媒「竞核」头条深度分析：一年后微恐题材红利摊薄，为何它仍能在暑期档迅速冲高？记者林一帆从三个层面拆解其长线增长逻辑：</div>
+          <ul class="m-points">
+            <li><strong>数据里程碑：</strong>去年 7 月 DAU 破百万 → 今年 2 月春节破 <strong>1000 万</strong>；QuestMobile 显示 3 月 MAU 复合增长率超 20%；7/7 巨人网络半年报点名其为业绩翻倍主因。</li>
+            <li><strong>联动带热：</strong>7/2 云南虫谷新地图 + 7/9 鬼吹灯联动，畅销榜回升 Top5；#超自然鬼吹灯联动 抖音播放超 <strong>2.6 亿</strong>、#超自然送奶茶 快手二创 1.2 亿；飞瓜数据显示其快手厂商影响力进前三，仅次于王者荣耀、和平精英。</li>
+            <li><strong>三大长线成因：</strong>① 稳定社交体系（双人机关/野排争抢制造临场变数，对冲 PvE 内容被摸清）② 持续新内容新故事 ③ 始终向年轻人靠近（官号进玩家语境接梗、皮肤重「出片」、传统文化按玩家行为植入）。</li>
+          </ul>
+          <div class="m-desc" style="margin-top:8px;">核心论点：它示范了「小众赛道做成爆火大 DAU」的路径，本质是<strong>玩法、社交、二创与文化表达的同频</strong>——"一款真正长在这个时代里的游戏"。</div>
+          <a class="linkchip" href="https://mp.weixin.qq.com/s/7plfiwiQ5eYnSZ5wsDQl4A" target="_blank">🔗 竞核公众号原文 mp.weixin.qq.com/s/7plfiwiQ5eYnSZ5wsDQl4A</a>
         </div>
         <div class="media-card">
           <div class="m-src">中新网上海<span class="m-date">02.02</span></div>

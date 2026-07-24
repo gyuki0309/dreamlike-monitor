@@ -935,52 +935,57 @@ a.linkchip:hover { background:#e0f0ff; }
     </div>
   </div>
 
-  <!-- 小红书 其他高热内容速览 -->
+  <!-- 小红书 其他高热内容速览（折叠下拉） -->
   <div class="top3-title" style="margin-top:22px;"><span class="badge" style="background:var(--xhs);">小红书</span> 其他高热内容速览 <span style="font-size:12px;color:var(--text-light);font-weight:400;">（除 TOP3 外的高赞内容汇总）</span></div>
-  <div class="summary-box" style="margin-bottom:10px;">
-    📌 <strong>内容方向概括：</strong>除攻略向外，小红书本周高热内容集中在 <strong>二创同人（「逍零」CP、鬼王零角色、IF 剧场长篇）</strong> 与 <strong>联动趣味（鬼吹灯/蛋仔联动彩蛋、躲猫猫玩法点位）</strong> 两大方向——<strong>角色同人 + 联动玩法梗</strong>是小红书破圈主力，二创厨子生态活跃。
+  <div class="foldbox">
+    <div class="fb-summary">
+      <div class="fb-lead">📌 <strong>内容方向概括：</strong>除攻略向外，小红书本周高热内容集中在 <strong>二创同人（「逍零」CP、鬼王零角色、IF 剧场长篇）</strong> 与 <strong>联动趣味（鬼吹灯/蛋仔联动彩蛋、躲猫猫玩法点位）</strong> 两大方向——<strong>角色同人 + 联动玩法梗</strong>是小红书破圈主力，二创厨子生态活跃。</div>
+      <span class="fb-toggle" onclick="this.closest('.foldbox').classList.toggle('open')">展开 4 条高热内容明细 <span class="fb-arrow">▾</span></span>
+    </div>
+    <div class="fb-detail">
+      <div style="overflow-x:auto;">
+      <table class="content-table">
+        <thead>
+          <tr>
+            <th>作者</th><th class="title-cell">内容 / 标题</th><th>方向</th>
+            <th>发布</th><th>点赞</th><th>收藏</th><th>评论</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>沿月酱</td>
+            <td class="title-cell">《寻珍》纯享版 全长1时40分（逍零）</td>
+            <td><span class="tag" style="background:#fce4f0;color:#c2185b;">二创·IF剧场</span></td>
+            <td>3天前</td>
+            <td class="num num-strong">1.5万</td><td class="num">8167</td><td class="num">967</td>
+          </tr>
+          <tr>
+            <td>夏小白</td>
+            <td class="title-cell">超自然超级躲猫猫 5个阴间点位教学</td>
+            <td><span class="tag" style="background:#e3f2fd;color:#1565c0;">攻略·玩法点位</span></td>
+            <td>6天前</td>
+            <td class="num num-strong">7121</td><td class="num">4703</td><td class="num">368</td>
+          </tr>
+          <tr>
+            <td>忧淮</td>
+            <td class="title-cell">今天在超自然捡到一个好奇怪的蛋（蛋仔联动彩蛋）</td>
+            <td><span class="tag" style="background:#fff3d6;color:#c8860a;">联动·趣味发现</span></td>
+            <td>1天前</td>
+            <td class="num num-strong">6866</td><td class="num">2212</td><td class="num">527</td>
+          </tr>
+          <tr>
+            <td>77好猫</td>
+            <td class="title-cell">「逍零」鬼王零角色二创（那你从了我）</td>
+            <td><span class="tag" style="background:#fce4f0;color:#c2185b;">二创·CP同人</span></td>
+            <td>2天前</td>
+            <td class="num num-strong">5237</td><td class="num">1749</td><td class="num">101</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="source-note" style="margin-top:8px;">数据来源：小红书笔记页公开互动数据（点赞/收藏/评论），抓取时间 2026.07.24；「逍零」为玩家自发的角色 CP 二创名。</p>
+    </div>
   </div>
-  <div style="overflow-x:auto;">
-  <table class="content-table">
-    <thead>
-      <tr>
-        <th>作者</th><th class="title-cell">内容 / 标题</th><th>方向</th>
-        <th>发布</th><th>点赞</th><th>收藏</th><th>评论</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>沿月酱</td>
-        <td class="title-cell">《寻珍》纯享版 全长1时40分（逍零）</td>
-        <td><span class="tag" style="background:#fce4f0;color:#c2185b;">二创·IF剧场</span></td>
-        <td>3天前</td>
-        <td class="num num-strong">1.5万</td><td class="num">8167</td><td class="num">967</td>
-      </tr>
-      <tr>
-        <td>夏小白</td>
-        <td class="title-cell">超自然超级躲猫猫 5个阴间点位教学</td>
-        <td><span class="tag" style="background:#e3f2fd;color:#1565c0;">攻略·玩法点位</span></td>
-        <td>6天前</td>
-        <td class="num num-strong">7121</td><td class="num">4703</td><td class="num">368</td>
-      </tr>
-      <tr>
-        <td>忧淮</td>
-        <td class="title-cell">今天在超自然捡到一个好奇怪的蛋（蛋仔联动彩蛋）</td>
-        <td><span class="tag" style="background:#fff3d6;color:#c8860a;">联动·趣味发现</span></td>
-        <td>1天前</td>
-        <td class="num num-strong">6866</td><td class="num">2212</td><td class="num">527</td>
-      </tr>
-      <tr>
-        <td>77好猫</td>
-        <td class="title-cell">「逍零」鬼王零角色二创（那你从了我）</td>
-        <td><span class="tag" style="background:#fce4f0;color:#c2185b;">二创·CP同人</span></td>
-        <td>2天前</td>
-        <td class="num num-strong">5237</td><td class="num">1749</td><td class="num">101</td>
-      </tr>
-    </tbody>
-  </table>
-  </div>
-  <p class="source-note">数据来源：小红书笔记页公开互动数据（点赞/收藏/评论），抓取时间 2026.07.24；「逍零」为玩家自发的角色 CP 二创名。</p>
 
   <!-- B站 TOP3 -->
   <div class="top3-title" style="margin-top:28px;"><span class="badge" style="background:var(--bili);">B站</span> 本周玩家高播放内容 TOP3 <span style="font-size:12px;color:var(--text-light);font-weight:400;">（按播放排序 · 抓取自B站搜索API）</span></div>
@@ -1149,12 +1154,6 @@ a.linkchip:hover { background:#e0f0ff; }
     </div>
     <div class="fb-detail">
       <div class="media-grid">
-        <div class="media-card tone-pos">
-          <div class="m-src">上海证券报 · 中国证券网<span class="m-date">07.07</span></div>
-          <div class="m-title">巨人网络：上半年净利润同比预增 157.38%-183.12%</div>
-          <div class="m-desc">公司预计 2026 上半年归母净利润 20-22 亿元，主因现象级手游《超自然行动组》持续贡献较高收入，为业绩增长提供重要支撑。</div>
-          <a class="linkchip" href="https://www.cnstock.com/commonDetail/739955" target="_blank">🔗 cnstock.com/commonDetail/739955</a>
-        </div>
         <div class="media-card feature tone-pos">
           <div class="m-src">竞核（游戏行业垂直媒体）· 原创深度<span class="m-badge">游戏媒体</span><span class="m-date">07.14</span></div>
           <div class="m-title">再掀中式微恐热度，《超自然行动组》解释了何谓赛道 Top1</div>
@@ -1166,6 +1165,12 @@ a.linkchip:hover { background:#e0f0ff; }
           </ul>
           <div class="m-desc" style="margin-top:8px;">核心论点：它示范了「小众赛道做成爆火大 DAU」的路径，本质是<strong>玩法、社交、二创与文化表达的同频</strong>——"一款真正长在这个时代里的游戏"。</div>
           <a class="linkchip" href="https://mp.weixin.qq.com/s/7plfiwiQ5eYnSZ5wsDQl4A" target="_blank">🔗 竞核公众号原文 mp.weixin.qq.com/s/7plfiwiQ5eYnSZ5wsDQl4A</a>
+        </div>
+        <div class="media-card tone-pos">
+          <div class="m-src">上海证券报 · 中国证券网<span class="m-date">07.07</span></div>
+          <div class="m-title">巨人网络：上半年净利润同比预增 157.38%-183.12%</div>
+          <div class="m-desc">公司预计 2026 上半年归母净利润 20-22 亿元，主因现象级手游《超自然行动组》持续贡献较高收入，为业绩增长提供重要支撑。</div>
+          <a class="linkchip" href="https://www.cnstock.com/commonDetail/739955" target="_blank">🔗 cnstock.com/commonDetail/739955</a>
         </div>
         <div class="media-card">
           <div class="m-src">中新网上海<span class="m-date">02.02</span></div>
@@ -1258,10 +1263,42 @@ a.linkchip:hover { background:#e0f0ff; }
           <li>7月10日BW2026提供线下试玩，今年5月获版号</li>
         </ul><br>
         <strong>⚠️ 关注点：</strong>与超自然行动组同属搜打撤赛道，差异化在于冷兵器+第一人称+硬核向。8月首测后需密切跟踪玩家口碑走向。
+        <div style="margin-top:12px;font-size:12.5px;font-weight:700;color:var(--text-light);">🔥 近两周社媒高热内容（小红书 + 抖音）</div>
+        <table class="xhs-hot">
+          <thead><tr><th>平台 / 内容</th><th>类型</th><th>数据效果</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>抖音 · @汤姆蛋《诡影藏锋》游戏PV「此乃遁影面」（#taptap发现好游戏）</td>
+              <td><span class="xt-type">游戏PV·品质向</span></td>
+              <td class="xt-data">赞3.5万 / 藏7261 / 评1406 / 转2.3万</td>
+            </tr>
+            <tr>
+              <td>抖音 · @黄二「面试穿搭npc可以嘛」BW漫展变装cos（#变装 #cos）</td>
+              <td><span class="xt-type">BW·cos变装</span></td>
+              <td class="xt-data">赞7.7万 / 藏3786 / 评195 / 转3542</td>
+            </tr>
+            <tr>
+              <td>小红书 · <a href="https://www.xiaohongshu.com/explore/6a548cd8000000001003eb75?xsec_token=ABzHSETYE3UUyy6_ovqOqGFVJpwH-5Q6jw5L1SarkrmmE=&xsec_source=pc_search&source=web_explore_feed" target="_blank">鹤淮画情「好漂亮的女鬼姐姐！中式志怪美学」</a></td>
+              <td><span class="xt-type">美术品质·风格</span></td>
+              <td class="xt-data">赞1782 / 藏953 / 评17</td>
+            </tr>
+            <tr>
+              <td>小红书 · <a href="https://www.xiaohongshu.com/explore/6a55e2ad000000002103fa73?xsec_token=ABDwkpeFCw3NKTlRxvn-Sh5jfzc_bTmU1tA5HKET-F2MQ=&xsec_source=pc_search&source=web_explore_feed" target="_blank">Itachi「bw 诡影藏锋」参展cos</a></td>
+              <td><span class="xt-type">BW·cos</span></td>
+              <td class="xt-data">赞127 / 藏3 / 评23</td>
+            </tr>
+            <tr>
+              <td>小红书 · <a href="https://www.xiaohongshu.com/explore/6a57889c000000000f028e3f?xsec_token=ABV0RGA2GTA_y31LuANY-NJF10MGnMYSOqQfpQP0TrPNI=&xsec_source=pc_search&source=web_explore_feed" target="_blank">Yoyo「网易新游戏是不是过于眼熟」（对比七界梦谭）</a></td>
+              <td><span class="xt-type">撞脸质疑·争议</span></td>
+              <td class="xt-data">赞315 / 藏20 / 评223</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="font-size:11px;color:var(--text-light);margin-top:6px;">方向概括：诡影藏锋近两周社媒热度分两条主线——<strong>抖音以营销号/达人的游戏PV传播为主，主打「中式志怪美术品质 + 冷兵器搜打撤」风格向种草</strong>（汤姆蛋PV赞3.5万、转发2.3万）；<strong>小红书 + 抖音承接 BW2026 漫展的线下 cos 内容外溢</strong>（黄二变装赞7.7万、Itachi/鹤淮画情等角色/女鬼cos）。同时存在少量<strong>「撞脸七界梦谭/网易套皮」的题材同质化质疑</strong>，为潜在负面舆情点。</div>
       </div>
     </div>
   </div>
-  <p class="source-note">数据来源：第五人格官网/官微（id5.163.com、7/16 联动公告）、GameLook、游民星空、华夏时报、TapTap、Steam商店页等公开报道。"like游戏"含同题材（恐怖/志怪）、同玩法（搜打撤/非对称对抗）及暑期档强竞争产品。</p>
+  <p class="source-note">数据来源：第五人格官网/官微（id5.163.com、7/16 联动公告）、GameLook、游民星空、华夏时报、TapTap、Steam商店页等公开报道；诡影藏锋社媒数据来自小红书/抖音笔记页公开互动量（抓取时间 2026.07.24）。"like游戏"含同题材（恐怖/志怪）、同玩法（搜打撤/非对称对抗）及暑期档强竞争产品。</p>
 </div>
 
 <div class="footer">

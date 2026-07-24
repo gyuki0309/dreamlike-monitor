@@ -426,6 +426,35 @@ a.linkchip:hover { background:#e0f0ff; }
 .foldbox .fb-detail { max-height:0; opacity:0; overflow:hidden; transition:max-height .45s ease, opacity .3s ease, padding .3s; padding:0 18px; }
 .foldbox.open .fb-detail { max-height:4000px; opacity:1; padding:0 18px 18px; }
 .foldbox .fb-detail .fb-inner-title { font-size:14px; font-weight:700; color:var(--text); margin:4px 0 12px; }
+
+/* ===== 各平台话题量与热点概况 · 可视化 ===== */
+.topic-viz { display:grid; grid-template-columns: 1.15fr 1fr; gap:18px; margin-bottom:8px; }
+@media (max-width: 820px){ .topic-viz { grid-template-columns:1fr; } }
+.topic-viz .viz-card { border:1px solid var(--border); border-radius:12px; background:#fff; padding:16px 18px; }
+.topic-viz .viz-card h4 { font-size:13px; font-weight:700; color:var(--text-light); margin-bottom:14px; letter-spacing:.3px; }
+
+/* 话题量水平条形（纯 CSS，量级用对数视觉映射） */
+.tbar-row { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+.tbar-row:last-child { margin-bottom:0; }
+.tbar-plat { flex:0 0 74px; display:flex; align-items:center; gap:6px; font-size:12.5px; font-weight:700; color:var(--text); }
+.tbar-plat .tb-dot { width:10px; height:10px; border-radius:3px; flex:0 0 auto; }
+.tbar-track { flex:1; height:22px; background:#f1f3f5; border-radius:6px; overflow:hidden; position:relative; }
+.tbar-fill { height:100%; border-radius:6px 0 0 6px; display:flex; align-items:center; justify-content:flex-end; padding-right:8px; color:#fff; font-size:11.5px; font-weight:700; min-width:38px; white-space:nowrap; box-shadow:inset 0 -6px 12px rgba(0,0,0,.08); transition:width 1s cubic-bezier(.2,.8,.2,1); }
+.tbar-unit { flex:0 0 auto; font-size:11px; color:var(--text-light); }
+
+/* 平台特征标签 */
+.plat-feats { display:flex; flex-direction:column; gap:12px; }
+.plat-feat { display:flex; gap:10px; align-items:flex-start; }
+.plat-feat .pf-tag { flex:0 0 auto; font-size:11px; font-weight:700; color:#fff; padding:3px 10px; border-radius:6px; margin-top:1px; }
+.plat-feat .pf-desc { font-size:12.5px; line-height:1.65; color:var(--text); }
+.plat-feat .pf-desc strong { color:var(--primary); }
+
+/* 热梗 chip 云 */
+.meme-box { border:1px solid var(--border); border-radius:12px; background:linear-gradient(135deg,#fff7f2,#fffdfb); padding:14px 18px; margin-top:4px; }
+.meme-box .mb-title { font-size:12.5px; font-weight:700; color:var(--text-light); margin-bottom:10px; }
+.meme-chips { display:flex; flex-wrap:wrap; gap:8px; }
+.meme-chip { font-size:12px; font-weight:600; color:#c0392b; background:#fff; border:1px solid #ffd9cc; padding:5px 12px; border-radius:16px; display:inline-flex; align-items:center; gap:5px; }
+.meme-chip .mc-fire { font-size:11px; }
 </style>
 </head>
 <body>
@@ -790,11 +819,58 @@ a.linkchip:hover { background:#e0f0ff; }
   <h2 class="section-title"><span class="icon icon-green">🎬</span> Part 3 三方内容讨论</h2>
 
   <h3 style="font-size:16px; margin-bottom:12px;">各平台话题量与热点概况</h3>
-  <div class="summary-box">
-    • <strong>抖音</strong>：#超自然行动组 累计播放 359.1亿；本周玩家二创围绕"躲猫猫、四队求佛、撞主播、直播趣事"高频出圈<br>
-    • <strong>快手</strong>：#超自然行动组 累计播放 1132.9亿，为体量最大的短视频阵地<br>
-    • <strong>小红书</strong>：话题浏览 93.9亿 / 讨论 7883.8万；玩家攻略向（虫谷百万撤离、卡音响、家具形象讨论）内容集中<br>
-    • <strong>热梗</strong>：「兰PV废稿」设计讨论、「果宝机甲归位」联动舞蹈、「阿念脖子拯救计划」小地图优化梗、「新家具男女号待遇」形象吐槽
+  <div class="topic-viz">
+    <!-- 左：话题量对比条形 -->
+    <div class="viz-card">
+      <h4>📊 #超自然行动组 各平台话题量对比</h4>
+      <div class="tbar-row">
+        <span class="tbar-plat"><span class="tb-dot" style="background:#ff7b00;"></span>快手</span>
+        <div class="tbar-track"><div class="tbar-fill" style="width:100%;background:linear-gradient(90deg,#ff9a3c,#ff7b00);">1132.9亿</div></div>
+        <span class="tbar-unit">播放</span>
+      </div>
+      <div class="tbar-row">
+        <span class="tbar-plat"><span class="tb-dot" style="background:#111;"></span>抖音</span>
+        <div class="tbar-track"><div class="tbar-fill" style="width:80%;background:linear-gradient(90deg,#444,#111);">359.1亿</div></div>
+        <span class="tbar-unit">播放</span>
+      </div>
+      <div class="tbar-row">
+        <span class="tbar-plat"><span class="tb-dot" style="background:#ff2442;"></span>小红书</span>
+        <div class="tbar-track"><div class="tbar-fill" style="width:58%;background:linear-gradient(90deg,#ff6b81,#ff2442);">93.9亿</div></div>
+        <span class="tbar-unit">浏览</span>
+      </div>
+      <div style="margin-top:12px;padding-top:10px;border-top:1px dashed var(--border);display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:var(--text-light);">
+        <span>💬 小红书讨论量 <b style="color:var(--xhs);">7883.8万</b></span>
+        <span style="font-size:10.5px;">条形为量级对数视觉映射（快手为对数级领先）</span>
+      </div>
+    </div>
+    <!-- 右：平台内容特征 -->
+    <div class="viz-card">
+      <h4>🎯 各平台内容特征与出圈方向</h4>
+      <div class="plat-feats">
+        <div class="plat-feat">
+          <span class="pf-tag" style="background:#ff7b00;">快手</span>
+          <span class="pf-desc"><strong>体量最大的短视频阵地</strong>，话题播放突破千亿量级，泛用户覆盖广。</span>
+        </div>
+        <div class="plat-feat">
+          <span class="pf-tag" style="background:#111;">抖音</span>
+          <span class="pf-desc"><strong>二创 / 名场面主阵地</strong>，围绕「躲猫猫、四队求佛、撞主播、直播趣事」高频出圈。</span>
+        </div>
+        <div class="plat-feat">
+          <span class="pf-tag" style="background:#ff2442;">小红书</span>
+          <span class="pf-desc"><strong>攻略 / 形象讨论集中</strong>，「虫谷百万撤离、卡音响、家具形象讨论」等攻略向内容为主。</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 本周热梗 -->
+  <div class="meme-box">
+    <div class="mb-title">🔥 本周热梗速览</div>
+    <div class="meme-chips">
+      <span class="meme-chip"><span class="mc-fire">🔥</span>「兰PV废稿」设计讨论</span>
+      <span class="meme-chip"><span class="mc-fire">🔥</span>「果宝机甲归位」联动舞蹈</span>
+      <span class="meme-chip"><span class="mc-fire">🔥</span>「阿念脖子拯救计划」小地图优化梗</span>
+      <span class="meme-chip"><span class="mc-fire">🔥</span>「新家具男女号待遇」形象吐槽</span>
+    </div>
   </div>
 
   <!-- 抖音 TOP3 -->

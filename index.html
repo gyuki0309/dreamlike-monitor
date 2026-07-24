@@ -188,6 +188,19 @@ body {
 .plat-head-dy { color: #333; }
 .plat-head-bili { color: var(--bili); }
 .plat-head-ks { color: #ff7b00; }
+/* 四平台分组竖向分隔线：每个平台组的起始列加左边框 */
+.content-table thead tr:first-child th:nth-child(4),
+.content-table thead tr:first-child th:nth-child(5),
+.content-table thead tr:first-child th:nth-child(6),
+.content-table thead tr:first-child th:nth-child(7) { border-left: 2px solid #c8ccd0; }
+.content-table thead tr:nth-child(2) th:nth-child(1),
+.content-table thead tr:nth-child(2) th:nth-child(4),
+.content-table thead tr:nth-child(2) th:nth-child(7),
+.content-table thead tr:nth-child(2) th:nth-child(9) { border-left: 2px solid #c8ccd0; }
+.content-table tbody td:nth-child(4),
+.content-table tbody td:nth-child(7),
+.content-table tbody td:nth-child(10),
+.content-table tbody td:nth-child(12) { border-left: 2px solid #c8ccd0; }
 
 /* Tags */
 .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }

@@ -194,25 +194,6 @@ body {
 .tag-new { background: #d4efdf; color: #27ae60; }
 .tag-collab { background: #d6eaf8; color: #2980b9; }
 .tag-content { background: #f4ecf7; color: #8e44ad; }
-/* 发布日历 */
-.pub-cal { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin:14px 0 6px; }
-.cal-day { background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 1px 4px rgba(0,0,0,.03); }
-.cal-head { background:linear-gradient(135deg,#0f3460,#16213e); color:#fff; padding:8px 10px; text-align:center; }
-.cal-date { font-size:18px; font-weight:800; letter-spacing:.5px; }
-.cal-week { font-size:11px; opacity:.82; margin-top:1px; }
-.cal-count { display:inline-block; margin-top:5px; font-size:10px; background:rgba(255,255,255,.18); padding:1px 8px; border-radius:10px; }
-.cal-body { padding:8px; display:flex; flex-direction:column; gap:7px; flex:1; }
-.cal-item { background:#fbfcfd; border:1px solid var(--border); border-left:3px solid var(--border); border-radius:7px; padding:6px 7px; }
-.cal-item.i-new { border-left-color:#27ae60; }
-.cal-item.i-collab { border-left-color:#2980b9; }
-.cal-item.i-content { border-left-color:#8e44ad; }
-.cal-item.i-play { border-left-color:#e94560; }
-.ci-type { font-size:10px; font-weight:700; padding:1px 6px; border-radius:4px; }
-.ci-title { font-size:11.5px; color:var(--text); line-height:1.45; margin-top:4px; }
-.ci-hot { font-size:9.5px; color:#c0392b; font-weight:700; margin-top:3px; display:inline-block; }
-.cal-legend { display:flex; flex-wrap:wrap; gap:14px; font-size:11.5px; color:var(--text-light); margin:10px 2px 0; align-items:center; }
-.cal-legend span.dot { display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:5px; vertical-align:middle; }
-@media(max-width:760px){ .pub-cal{ grid-template-columns:repeat(2,1fr);} }
 /* 竞品小红书高热表 */
 .xhs-hot { width:100%; border-collapse:collapse; margin-top:8px; font-size:11.5px; }
 .xhs-hot th { background:#fff0f3; color:#c0392b; font-weight:700; padding:6px 8px; text-align:left; border-bottom:1px solid #ffd9e0; white-space:nowrap; }
@@ -657,61 +638,6 @@ a.linkchip:hover { background:#e0f0ff; }
     <strong>内容类型分布：</strong>新怪物/地图爆料、联动预热、版本优化、时装展示、趣闻速递、员工日常等，覆盖玩法更新与情感运营两条主线。联动类内容（果宝第二弹、阿念巫铃儿时装）在抖音普遍破 8 万赞，为本周互动天花板。
   </div>
 
-  <h3 style="font-size:16px; margin:24px 0 12px; color:var(--text-light);">🗓️ 本周发布日历 · 07.18-07.22（工作日）</h3>
-  <div class="pub-cal">
-    <!-- 07.18 -->
-    <div class="cal-day">
-      <div class="cal-head"><div class="cal-date">07.18</div><div class="cal-week">周五</div><span class="cal-count">4 组</span></div>
-      <div class="cal-body">
-        <div class="cal-item i-new"><span class="ci-type tag-new">新内容</span><div class="ci-title">云南虫谷多队地图爆料·傩女异变</div></div>
-        <div class="cal-item i-play"><span class="ci-type tag-new">新玩法</span><div class="ci-title">鬼屋超级躲猫猫，职业选手不准参赛</div><span class="ci-hot">🔥 B站最高播放 9.0万</span></div>
-        <div class="cal-item i-new"><span class="ci-type tag-new">新系统</span><div class="ci-title">农场装修系统上线·首款主建筑皮肤</div></div>
-        <div class="cal-item i-content"><span class="ci-type tag-content">趣闻</span><div class="ci-title">趣闻速递第十一期·员工研发20G网</div></div>
-      </div>
-    </div>
-    <!-- 07.19 -->
-    <div class="cal-day">
-      <div class="cal-head"><div class="cal-date">07.19</div><div class="cal-week">周六</div><span class="cal-count">3 组</span></div>
-      <div class="cal-body">
-        <div class="cal-item i-collab"><span class="ci-type tag-collab">联动</span><div class="ci-title">× 果宝特攻 联动第二弹爆料</div><span class="ci-hot">🔥 抖音 8.8万赞</span></div>
-        <div class="cal-item i-new"><span class="ci-type tag-new">新内容</span><div class="ci-title">云南虫谷多队【极高危】BOSS爆料</div></div>
-        <div class="cal-item i-content"><span class="ci-type tag-content">日常</span><div class="ci-title">员工下班日常02·我避他锋芒</div></div>
-      </div>
-    </div>
-    <!-- 07.20 -->
-    <div class="cal-day">
-      <div class="cal-head"><div class="cal-date">07.20</div><div class="cal-week">周日</div><span class="cal-count">2 组</span></div>
-      <div class="cal-body">
-        <div class="cal-item i-content"><span class="ci-type tag-content">幕后</span><div class="ci-title">超绝不经意展示兰PV的废稿</div><span class="ci-hot">🔥 小红书最高赞 2.7万</span></div>
-        <div class="cal-item i-collab"><span class="ci-type tag-collab">联动</span><div class="ci-title">阿念-橙留香 / 巫铃儿-上官子怡 时装</div></div>
-      </div>
-    </div>
-    <!-- 07.21 -->
-    <div class="cal-day">
-      <div class="cal-head"><div class="cal-date">07.21</div><div class="cal-week">周一</div><span class="cal-count">2 组</span></div>
-      <div class="cal-body">
-        <div class="cal-item i-new"><span class="ci-type tag-new">新内容</span><div class="ci-title">云南虫谷摸金新怪物【巨型戏偶】爆料</div></div>
-        <div class="cal-item i-collab"><span class="ci-type tag-collab">联动</span><div class="ci-title">果宝特攻也要上工·时装模型展示</div></div>
-      </div>
-    </div>
-    <!-- 07.22 -->
-    <div class="cal-day">
-      <div class="cal-head"><div class="cal-date">07.22</div><div class="cal-week">周二</div><span class="cal-count">2 组</span></div>
-      <div class="cal-body">
-        <div class="cal-item i-content"><span class="ci-type tag-content">优化</span><div class="ci-title">小地图边走边看·阿念脖子拯救计划</div><span class="ci-hot">🔥 抖音最高赞 8.8万</span></div>
-        <div class="cal-item i-new"><span class="ci-type tag-new">新内容</span><div class="ci-title">云南虫谷多队傩女爆料·龙珠房BOSS</div></div>
-      </div>
-    </div>
-  </div>
-  <div class="cal-legend">
-    <span><span class="dot" style="background:#27ae60;"></span>新内容/新玩法/新系统</span>
-    <span><span class="dot" style="background:#2980b9;"></span>联动（果宝特攻）</span>
-    <span><span class="dot" style="background:#8e44ad;"></span>内容运营（优化/幕后/趣闻/日常）</span>
-    <span style="color:#c0392b;">🔥 = 当日全网单条爆款</span>
-  </div>
-  <div class="summary-box" style="margin-top:14px;">
-    <strong>📆 发布节奏解读：</strong>本周工作日共发布 <strong>13 组</strong>内容，节奏「<strong>周五重、周中稳</strong>」——07.18 周五单日 4 组集中铺量（新玩法+新系统+新内容+趣闻），为版本期开场造势；周末转向联动预热与情感运营（果宝第二弹、员工日常）；周一周二回到「新内容爆料 + 联动时装」的稳定双主线。<strong>联动类（果宝特攻）</strong>贯穿全周且互动最高，<strong>新内容爆料（云南虫谷/傩女/戏偶）</strong>为发布主力，配合<strong>内容运营（幕后废稿、趣闻、日常）</strong>维系粉丝情感黏性。三天诞生全网单条爆款（B站躲猫猫 9.0万播放、小红书兰PV废稿 2.7万赞、抖音小地图优化 8.8万赞）。
-  </div>
 
   <h3 style="font-size:16px; margin:24px 0 12px; color:var(--text-light);">📋 本周发布内容 · 三平台互动数据汇总</h3>
   <div style="overflow-x:auto;">
@@ -732,6 +658,14 @@ a.linkchip:hover { background:#e0f0ff; }
       </tr>
     </thead>
     <tbody>
+      <tr class="highlight">
+        <td>07.23</td>
+        <td class="title-cell">云南虫谷·多队对抗地图正式上线，傩女异变恐怖再临 <span class="tag tag-hot">版本更新</span></td>
+        <td><span class="tag tag-new">新内容</span></td>
+        <td class="num">1.9万</td><td class="num">2723</td><td class="num">4376</td>
+        <td class="num">7.5万</td><td class="num">6094</td>
+        <td class="num">7.3万</td><td class="num">100</td>
+      </tr>
       <tr class="highlight">
         <td>07.22</td>
         <td class="title-cell">小地图能边走边看，阿念脖子拯救计划已开启 <span class="tag tag-hot">🔥抖音最高赞</span></td>
@@ -803,14 +737,6 @@ a.linkchip:hover { background:#e0f0ff; }
         <td class="num">1.5万</td><td class="num">1823</td><td class="num">1448</td>
         <td class="num">4.9万</td><td class="num">2932</td>
         <td class="dash">—</td><td class="dash">—</td>
-      </tr>
-      <tr>
-        <td>07.18</td>
-        <td class="title-cell">云南虫谷多队地图爆料，傩女异变，恐怖再临</td>
-        <td><span class="tag tag-new">新内容</span></td>
-        <td class="num">1.9万</td><td class="num">2723</td><td class="num">4376</td>
-        <td class="num">7.5万</td><td class="num">6094</td>
-        <td class="num">7.3万</td><td class="num">100</td>
       </tr>
       <tr>
         <td>07.18</td>
@@ -1211,28 +1137,75 @@ a.linkchip:hover { background:#e0f0ff; }
           <thead><tr><th>内容</th><th>类型</th><th>数据效果</th></tr></thead>
           <tbody>
             <tr>
-              <td><a href="https://www.xiaohongshu.com/explore/6a606233000000000401c350?xsec_token=AB36NX5-L-IabJ-FMs4ZQH6lyUBEBXmrA7PRjlqFSZ0t4=&xsec_source=pc_search&source=web_explore_feed" target="_blank">游园会园丁官方Coser私下另一面？</a></td>
+              <td><a href="https://www.xiaohongshu.com/explore/6a606233000000000401c350?xsec_token=AB36NX5-L-IabJ-FMs4ZQH6lyUBEBXmrA7PRjlqFSZ0t4=&xsec_source=pc_search&source=web_explore_feed" target="_blank">游园会园丁官方Coser私下竟有另一面？</a><div style="font-size:10px;color:var(--text-light);">眠眠游戏早知道 · 1天前</div></td>
               <td><span class="xt-type">Coser八卦</span></td>
-              <td class="xt-data">待补</td>
+              <td class="xt-data">赞4.1万 / 藏3403 / 评2254</td>
             </tr>
             <tr>
-              <td><a href="https://www.xiaohongshu.com/explore/6a5a0b2b000000001c011e6a?xsec_token=AB816Dcl-gID1jPZZvrCEdedOO_D0GutTEIu6eveqylp8=&xsec_source=pc_search&source=web_explore_feed" target="_blank">又是游园会，终于再见了！（使徒溯洄 cos）· 李泊琳_Burning</a></td>
+              <td><a href="https://www.xiaohongshu.com/explore/6a5a0b2b000000001c011e6a?xsec_token=AB816Dcl-gID1jPZZvrCEdedOO_D0GutTEIu6eveqylp8=&xsec_source=pc_search&source=web_explore_feed" target="_blank">又是游园会，终于再见了！（使徒溯洄 cos）</a><div style="font-size:10px;color:var(--text-light);">李泊琳_Burning · 1天前</div></td>
               <td><span class="xt-type">角色Cosplay</span></td>
-              <td class="xt-data">待补</td>
+              <td class="xt-data">赞7.3万 / 藏4443 / 评805</td>
             </tr>
             <tr>
-              <td><a href="https://www.xiaohongshu.com/explore/6a5cc398000000001303cb16?xsec_token=ABsVmOEvVM1hNOyTTOyq23Wl0WM2w5eqS1euYlnF5AK4k=&xsec_source=pc_search&source=web_explore_feed" target="_blank">骑士的加强方向不太对吧？！</a></td>
-              <td><span class="xt-type">平衡吐槽</span></td>
-              <td class="xt-data">待补</td>
+              <td><a href="https://www.xiaohongshu.com/explore/6a5cc398000000001303cb16?xsec_token=ABsVmOEvVM1hNOyTTOyq23Wl0WM2w5eqS1euYlnF5AK4k=&xsec_source=pc_search&source=web_explore_feed" target="_blank">骑士的加强方向不太对吧？！（限定金团片）</a><div style="font-size:10px;color:var(--text-light);">君鸽布谷 · 4天前</div></td>
+              <td><span class="xt-type">平衡吐槽·cos</span></td>
+              <td class="xt-data">赞4.1万 / 藏3024 / 评261</td>
             </tr>
             <tr>
-              <td><a href="https://www.xiaohongshu.com/explore/6a5b83e1000000000f01d814?xsec_token=ABCfAraq0qNx_kXuHvIN8MHdpivuLM6p2Qmh7xZCLq2ZA=&xsec_source=pc_search&source=web_explore_feed" target="_blank">全网0个人在催的心患打法教程（盗墓笔记联动）</a></td>
+              <td><a href="https://www.xiaohongshu.com/explore/6a5b83e1000000000f01d814?xsec_token=ABCfAraq0qNx_kXuHvIN8MHdpivuLM6p2Qmh7xZCLq2ZA=&xsec_source=pc_search&source=web_explore_feed" target="_blank">全网0个人在催的心患打法教程（盗墓笔记联动）</a><div style="font-size:10px;color:var(--text-light);">庄园突击小团子 · 5天前</div></td>
               <td><span class="xt-type">打法教程</span></td>
-              <td class="xt-data">待补</td>
+              <td class="xt-data">赞4.1万 / 藏8588 / 评1194</td>
             </tr>
           </tbody>
         </table>
         <div style="font-size:11px;color:var(--text-light);margin-top:6px;">方向概括：本周第五人格小红书高热集中在 <strong>游园会赛事/Coser 生态</strong>（园丁、使徒溯洄 cos）与 <strong>角色玩法讨论</strong>（骑士平衡吐槽、心理学家打法教程）两条主线，赛事 IP 与角色同人是拉动社区讨论的主力。</div>
+        <div style="margin-top:14px;font-size:12.5px;font-weight:700;color:var(--text-light);">🎵 抖音高热内容（本周）</div>
+        <table class="xhs-hot">
+          <thead><tr><th>内容 / 作者</th><th>类型</th><th>数据效果</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>厂长拥抱互动·心跳游园会 <div style="font-size:10px;color:var(--text-light);">兔牙w · 5天前</div></td>
+              <td><span class="xt-type">游园会·情感互动</span></td>
+              <td class="xt-data">赞75.0万 / 藏2.6万 / 评5309 / 转7.3万</td>
+            </tr>
+            <tr>
+              <td>游园会哭泣小丑（裘克）角色互动 <div style="font-size:10px;color:var(--text-light);">-kkiki · 4天前</div></td>
+              <td><span class="xt-type">游园会·角色扮演</span></td>
+              <td class="xt-data">赞61.2万 / 藏3.9万 / 评4575 / 转4.8万</td>
+            </tr>
+            <tr>
+              <td>又是游园会·使徒 coser 大巡游 <div style="font-size:10px;color:var(--text-light);">Burning_泊琳 · 6天前</div></td>
+              <td><span class="xt-type">游园会·cos</span></td>
+              <td class="xt-data">赞53.3万 / 藏2.0万 / 评3771 / 转6.2万</td>
+            </tr>
+            <tr>
+              <td>奈布萨贝达（佣兵）生日贺图 <div style="font-size:10px;color:var(--text-light);">Bcbgkveo · 1天前</div></td>
+              <td><span class="xt-type">角色生日·同人</span></td>
+              <td class="xt-data">赞30.7万 / 藏3.0万 / 评1.4万 / 转3.3万</td>
+            </tr>
+            <tr>
+              <td>用张起灵放十年人间·盗墓笔记联动 <div style="font-size:10px;color:var(--text-light);">邮差的四川老公 · 4天前</div></td>
+              <td><span class="xt-type">联动玩法·实战</span></td>
+              <td class="xt-data">赞23.0万 / 藏8535 / 评1.0万 / 转4.3万</td>
+            </tr>
+            <tr>
+              <td>佣兵守墓人躲好别被发现·坠入盛夏 <div style="font-size:10px;color:var(--text-light);">蜜蜂 · 6天前</div></td>
+              <td><span class="xt-type">玩法实战·趣味</span></td>
+              <td class="xt-data">赞19.9万 / 藏9745 / 评2798</td>
+            </tr>
+            <tr>
+              <td>小说家众神归位·坠入盛夏 <div style="font-size:10px;color:var(--text-light);">山间野鸡仙痴 · 5天前</div></td>
+              <td><span class="xt-type">角色玩法·剧情</span></td>
+              <td class="xt-data">赞18.8万 / 藏8737 / 评3673 / 转8.2万</td>
+            </tr>
+            <tr>
+              <td>玩张起灵的第一批受害者·顶级博弈 <div style="font-size:10px;color:var(--text-light);">岁冬铭_x · 2天前</div></td>
+              <td><span class="xt-type">联动玩法·高端局</span></td>
+              <td class="xt-data">赞11.0万 / 藏2973 / 评1.1万 / 转3.9万</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="font-size:11px;color:var(--text-light);margin-top:6px;">方向概括：抖音端热度显著高于小红书（头部单条破 <strong>75 万赞</strong>），高热内容集中在 <strong>2026 心跳游园会线下 cos/情感互动</strong>（厂长拥抱、哭泣小丑、使徒巡游三条合计破 190 万赞）与 <strong>《盗墓笔记》联动玩法实战</strong>（张起灵/佣兵/小说家角色的联动局教学、名场面）两大方向——线下漫展 IP 的情感向内容是抖音破圈引擎，联动玩法则承接核心玩家的实战讨论。</div>
       </div>
     </div>
     <div class="competitor-card">
